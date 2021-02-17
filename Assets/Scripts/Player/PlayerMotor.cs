@@ -9,12 +9,23 @@ public class PlayerMotor : MonoBehaviour
     Rigidbody rb;
     #endregion
 
+    #region Animation
+
+    Animator animator;
+    #endregion
     private Vector3 velocity;
     private Quaternion rotation;
 
     private void Awake()
     {
         rb = GetComponent<Rigidbody>();
+        animator = GetComponentInChildren<Animator>();
+    }
+
+    private void Update()
+    {
+        animator.SetFloat("Move", velocity.magnitude);
+        
     }
 
     private void FixedUpdate()
@@ -27,6 +38,9 @@ public class PlayerMotor : MonoBehaviour
         if (velocity != Vector3.zero)
         {
             rb.MovePosition(transform.position + velocity * Time.fixedDeltaTime);
+            
+
+            //rb.velocity = velocity * Time.fixedDeltaTime;
             //transform.LookAt(transform.position + velocity);
             transform.rotation = rotation;
         }
