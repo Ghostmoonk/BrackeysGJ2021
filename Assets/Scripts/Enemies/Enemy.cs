@@ -39,10 +39,11 @@ public class Enemy : MonoBehaviour
 
     EnemyState state;
 
-
     #region Collisions
     [SerializeField]
     LayerMask blockingChaseMask;
+    [SerializeField]
+    LayerMask LightsColliderMask;
 
     Collider col;
     float colliderWidth;
@@ -55,6 +56,16 @@ public class Enemy : MonoBehaviour
         get
         {
             return state != EnemyState.Fleeing && state != EnemyState.Attracting;
+        }
+    }
+
+    bool isTargetable = false;
+
+    public bool IsTargetable
+    {
+        get
+        {
+            return isTargetable;
         }
     }
 
@@ -78,12 +89,13 @@ public class Enemy : MonoBehaviour
             else
                 moveVelocity = fleeDirection.normalized * fleeSpeed * Time.deltaTime;
 
+            Debug.Log(fleeDirection);
             enemyBehavior.Move(moveVelocity);
             return;
         }
 
-        //If his target is define but becomes inlighted
-        if (currentFollowerTarget != null && currentFollowerTarget.IsInlighted)
+        //If his target is define but becomes untargetable
+        if (currentFollowerTarget != null && !currentFollowerTarget.IsTargetable)
         {
             currentFollowerTarget = null;
             enemyBehavior.StopDestination(true);
@@ -122,9 +134,59 @@ public class Enemy : MonoBehaviour
             followerAttracted.transform.SetParent(attractAttachPoint);
             followerAttracted.transform.localPosition = Vector3.zero;
         }
-        if (other.gameObject.tag == "Light")
+
+        //On collide with an "invincible" safe light area
+        if (other.gameObject.tag == "Invincible")
         {
+            if (state == EnemyState.Fleeing)
+            {
+                StopCoroutine(FleeAway());
+            }
+
             StartCoroutine(FleeAway());
+        }
+        //On collide with an "protected" safe light area
+        if (other.gameObject.tag == "Protected")
+        {
+            isTargetable = true;
+        }
+    }
+
+    private bool CheckShouldFlee()
+    {
+        //Verify if the enemy collider is colliding with an invincible light 
+        Vector3 bottomSphereCenter = new Vector3(transform.position.x, transform.position.y - colliderHeight / 4, transform.position.z);
+        Vector3 topSphereCenter = new Vector3(transform.position.x, transform.position.y + colliderHeight / 4, transform.position.z);
+
+        Collider[] invincibleLightsCollider = Physics.OverlapCapsule(bottomSphereCenter, topSphereCenter, colliderWidth, blockingChaseMask);
+
+        if (invincibleLightsCollider.Length > 0)
+            return true;
+        else
+            return false;
+
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        //When the enemy get out of the protective light
+        if (other.gameObject.tag == "Protected")
+        {
+            //Check if he is not in another
+            //Cast a capsule from the current collider shape
+            Vector3 bottomSphereCenter = new Vector3(transform.position.x, transform.position.y - colliderHeight / 4, transform.position.z);
+            Vector3 topSphereCenter = new Vector3(transform.position.x, transform.position.y + colliderHeight / 4, transform.position.z);
+
+            RaycastHit hit;
+            Physics.CapsuleCast(bottomSphereCenter, topSphereCenter, colliderWidth, Vector3.zero, out hit, 0f,
+                    LightsColliderMask);
+
+            //If it is not in light collider
+            if (hit.collider == null)
+            {
+                isTargetable = false;
+                return;
+            }
         }
     }
 
@@ -137,7 +199,7 @@ public class Enemy : MonoBehaviour
         //Go through every follower
         foreach (Follower follower in currentFollowers)
         {
-            if (!follower.IsInlighted)
+            if (follower.IsTargetable)
             {
                 //Find if there is no light between
                 RaycastHit hit;
@@ -192,7 +254,12 @@ public class Enemy : MonoBehaviour
         enemyBehavior.StopDestination(true);
         fleeDirection = transform.position - FindObjectOfType<PlayerLead>().transform.position;
         yield return new WaitForSeconds(inlightFleeDuration);
-        state = EnemyState.Waiting;
+        if (!CheckShouldFlee())
+            state = EnemyState.Waiting;
+        else
+        {
+            StartCoroutine(FleeAway());
+        }
     }
 
     private void OnBecameInvisible()
