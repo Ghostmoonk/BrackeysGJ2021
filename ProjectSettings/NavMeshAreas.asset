@@ -12,7 +12,11 @@ NavMeshProjectSettings:
   - name: Jump
     cost: 2
   - name: Light
+<<<<<<< HEAD
     cost: 4
+=======
+    cost: 1
+>>>>>>> Soren
   - name: 
     cost: 1
   - name: 
