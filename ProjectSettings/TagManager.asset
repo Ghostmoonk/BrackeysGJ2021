@@ -5,11 +5,14 @@ TagManager:
   serializedVersion: 2
   tags:
   - Light
+  - Invincible
+  - Protected
+  - Unprotected
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - Followers
+  - 
   - Water
   - UI
   - Follower

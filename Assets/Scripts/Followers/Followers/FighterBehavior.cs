@@ -8,4 +8,10 @@ public class FighterBehavior : FollowerBehavior
     {
         base.Start();
     }
+
+    public void Attack(Enemy enemy)
+    {
+        //Play attack animation, destroy the enemy then
+        Destroy(enemy.gameObject);
+    }
 }

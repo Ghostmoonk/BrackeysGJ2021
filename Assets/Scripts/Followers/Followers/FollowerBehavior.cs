@@ -10,7 +10,6 @@ public class FollowerBehavior : MonoBehaviour
     #region Components
 
     protected NavMeshAgent agent;
-
     #endregion
 
     [SerializeField]

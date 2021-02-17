@@ -7,6 +7,8 @@ public class PlayerLead : MonoBehaviour
 {
     List<Follower> followers;
 
+    Inventory inventory;
+
     [SerializeField]
     LayerMask followerMask;
     LayerMask enemyMask;
@@ -20,6 +22,11 @@ public class PlayerLead : MonoBehaviour
     private void Start()
     {
         followers = new List<Follower>();
+
+        if (GetComponent<Inventory>() == null)
+        {
+            gameObject.AddComponent<Inventory>();
+        }
     }
 
     private void Update()

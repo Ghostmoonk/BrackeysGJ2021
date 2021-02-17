@@ -21,20 +21,29 @@ public abstract class Follower : MonoBehaviour
     protected FollowState followState;
     protected Transform currentTarget;
 
-    protected bool isInlighted;
-    public bool IsInlighted
+    protected bool isTargetable;
+    public bool IsTargetable
     {
         get
         {
-            return isInlighted;
+            return isTargetable;
         }
     }
+
+    #region Health
+    [Header("Health")]
+    [SerializeField]
+    [Range(0, 10)]
+    int maxHealth = 1;
+    int currentHealth;
+    #endregion
 
     protected virtual void Start()
     {
         followBehavior = GetComponent<FollowerBehavior>();
 
-        isInlighted = false;
+        isTargetable = true;
+        currentHealth = maxHealth;
         followState = FollowState.Waiting;
     }
 
@@ -77,9 +86,9 @@ public abstract class Follower : MonoBehaviour
         SetState(FollowState.Following);
     }
 
-    public void SetInlighted(bool _inLight)
+    public void SetTargetable(bool _targetable)
     {
-        isInlighted = _inLight;
+        isTargetable = _targetable;
     }
 
     public void SetState(FollowState _newState) => followState = _newState;
@@ -88,17 +97,32 @@ public abstract class Follower : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag == "Light")
+        if (other.gameObject.tag == "Invincible")
         {
-            isInlighted = true;
+            isTargetable = false;
         }
     }
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.gameObject.tag == "Light")
+        if (other.gameObject.tag == "Invincible")
         {
-            isInlighted = false;
+            isTargetable = true;
         }
     }
+
+    private void OnTriggerStay(Collider other)
+    {
+        if (other.gameObject.tag == "Invincible")
+        {
+            if (isTargetable)
+                isTargetable = false;
+        }
+    }
+}
+
+public interface IHealth
+{
+    void UpdateHealth(int amount);
+    void Die();
 }
