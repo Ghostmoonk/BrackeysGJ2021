@@ -14,10 +14,17 @@ public class FollowerBehavior : MonoBehaviour
 
     [SerializeField]
     float destinationReachedThreshold = 3f;
+    Animator animator;
 
     protected virtual void Start()
     {
         agent = GetComponent<NavMeshAgent>();
+        animator = GetComponentInChildren<Animator>();
+    }
+
+    private void Update()
+    {
+        animator.SetFloat("Move", agent.velocity.magnitude);
     }
 
     public void GoToTarget(Transform target)
