@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 6084120764957332433}
   - component: {fileID: 6084120764957332432}
   - component: {fileID: 6084120764957332439}
+  - component: {fileID: 4768990433896698126}
   - component: {fileID: 6084120764957332430}
   m_Layer: 0
   m_Name: Enemy
@@ -154,6 +155,21 @@ MonoBehaviour:
   blockingChaseMask:
     serializedVersion: 2
     m_Bits: 128
+  LightsColliderMask:
+    serializedVersion: 2
+    m_Bits: 0
+--- !u!114 &4768990433896698126
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6084120764957332438}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 77d305a300ea70a4c9861e12bbb1bca4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!54 &6084120764957332430
 Rigidbody:
   m_ObjectHideFlags: 0
