@@ -30,10 +30,8 @@ public class FollowerBehavior : MonoBehaviour
 
     private void Update()
     {
-        if (animator != null)
+        if (animator != null) {
             animator.SetFloat("Move", agent.velocity.magnitude);
-<<<<<<< HEAD
-=======
             print(animator.GetFloat("Move"));
             if (followerScript.GetState() == FollowState.Attracted)
             {
@@ -47,7 +45,6 @@ public class FollowerBehavior : MonoBehaviour
 
             }
         }
->>>>>>> 932f3c2... Prefab Villageois
     }
 
     public void GoToTarget(Transform target)
