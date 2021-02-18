@@ -13,11 +13,13 @@ public class FollowerBehavior : MonoBehaviour
     #endregion
 
     [SerializeField]
+    Follower followerScript;
     float destinationReachedThreshold = 3f;
     public Animator animator;
 
     protected virtual void Start()
     {
+        followerScript = GetComponent<Follower>();
         agent = GetComponent<NavMeshAgent>();
         
     }
@@ -30,6 +32,22 @@ public class FollowerBehavior : MonoBehaviour
     {
         if (animator != null)
             animator.SetFloat("Move", agent.velocity.magnitude);
+<<<<<<< HEAD
+=======
+            print(animator.GetFloat("Move"));
+            if (followerScript.GetState() == FollowState.Attracted)
+            {
+                transform.rotation = Quaternion.identity;
+                animator.SetBool("isDragged", true);
+            }
+            else
+            {
+                
+                animator.SetBool("isDragged", false);
+
+            }
+        }
+>>>>>>> 932f3c2... Prefab Villageois
     }
 
     public void GoToTarget(Transform target)
