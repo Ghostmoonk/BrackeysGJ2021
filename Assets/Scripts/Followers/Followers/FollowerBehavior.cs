@@ -13,11 +13,13 @@ public class FollowerBehavior : MonoBehaviour
     #endregion
 
     [SerializeField]
+    Follower followerScript;
     float destinationReachedThreshold = 3f;
     public Animator animator;
 
     protected virtual void Start()
     {
+        followerScript = GetComponent<Follower>();
         agent = GetComponent<NavMeshAgent>();
         
     }
@@ -33,6 +35,17 @@ public class FollowerBehavior : MonoBehaviour
         {
             animator.SetFloat("Move", agent.velocity.magnitude);
             print(animator.GetFloat("Move"));
+            if (followerScript.GetState() == FollowState.Attracted)
+            {
+                transform.rotation = Quaternion.identity;
+                animator.SetBool("isDragged", true);
+            }
+            else
+            {
+                
+                animator.SetBool("isDragged", false);
+
+            }
         }
     }
 

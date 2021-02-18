@@ -23,7 +23,9 @@ public class EnemyBehavior : MonoBehaviour
 
     public void Move(Vector3 direction)
     {
+        
         agent.Move(direction);
+        
     }
 
     public void StopDestination(bool _switch)
