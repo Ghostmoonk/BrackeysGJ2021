@@ -229,7 +229,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: d25189336b24ba84ca8589446efe6c44, type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: d25189336b24ba84ca8589446efe6c44, type: 3}
       propertyPath: m_LocalScale.x
@@ -730,50 +730,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 2405439759369737856, guid: e47585567ab84c947910350c1a3150c0, type: 3}
   m_PrefabInstance: {fileID: 2405439758491567340}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1372542711
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1372542712}
-  - component: {fileID: 1372542713}
-  m_Layer: 7
-  m_Name: LightSphere
-  m_TagString: Light
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1372542712
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1372542711}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 1286099564}
-  m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!135 &1372542713
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1372542711}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 1.5
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!4 &1397171521 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6084120764957332429, guid: 09cc05949bcd91c459740761f28a0fe5, type: 3}
@@ -1357,7 +1313,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lightAreas:
-  - radius: 3
+  - radius: 2
     safeLevel: 0
   - radius: 6
     safeLevel: 1
@@ -1473,14 +1429,14 @@ PrefabInstance:
     - target: {fileID: 8596800922128706374, guid: e47585567ab84c947910350c1a3150c0, type: 3}
       propertyPath: lightSphereCol
       value: 
-      objectReference: {fileID: 1372542713}
+      objectReference: {fileID: 0}
     - target: {fileID: 8596800922128706374, guid: e47585567ab84c947910350c1a3150c0, type: 3}
       propertyPath: followerMask.m_Bits
       value: 64
       objectReference: {fileID: 0}
     - target: {fileID: 8596800922128706374, guid: e47585567ab84c947910350c1a3150c0, type: 3}
       propertyPath: appendFollowerRadius
-      value: 3
+      value: 2.5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e47585567ab84c947910350c1a3150c0, type: 3}

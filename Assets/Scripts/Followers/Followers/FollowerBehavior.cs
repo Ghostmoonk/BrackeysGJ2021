@@ -24,7 +24,8 @@ public class FollowerBehavior : MonoBehaviour
 
     private void Update()
     {
-        animator.SetFloat("Move", agent.velocity.magnitude);
+        if (animator != null)
+            animator.SetFloat("Move", agent.velocity.magnitude);
     }
 
     public void GoToTarget(Transform target)

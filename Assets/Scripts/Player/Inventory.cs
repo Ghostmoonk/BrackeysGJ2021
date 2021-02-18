@@ -11,6 +11,11 @@ public class Inventory : MonoBehaviour
 
     Dictionary<ItemType, int> itemsDico;
 
+    private void Start()
+    {
+        itemsDico = new Dictionary<ItemType, int>();
+    }
+
     public void AddItem(ItemType itemType)
     {
         if (!itemsDico.ContainsKey(itemType))
@@ -41,6 +46,8 @@ public class Inventory : MonoBehaviour
             return false;
         }
     }
+
+    public int GetItemAmount(ItemType itemType) => itemsDico[itemType];
 
 
 }

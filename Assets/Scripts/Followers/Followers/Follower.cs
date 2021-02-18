@@ -20,6 +20,13 @@ public abstract class Follower : MonoBehaviour
 
     protected FollowState followState;
     protected Transform currentTarget;
+    public Transform CurrentTarget
+    {
+        get
+        {
+            return currentTarget;
+        }
+    }
 
     protected bool isTargetable;
     public bool IsTargetable
@@ -30,20 +37,11 @@ public abstract class Follower : MonoBehaviour
         }
     }
 
-    #region Health
-    [Header("Health")]
-    [SerializeField]
-    [Range(0, 10)]
-    int maxHealth = 1;
-    int currentHealth;
-    #endregion
-
     protected virtual void Start()
     {
         followBehavior = GetComponent<FollowerBehavior>();
 
         isTargetable = true;
-        currentHealth = maxHealth;
         followState = FollowState.Waiting;
     }
 
@@ -97,7 +95,7 @@ public abstract class Follower : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag == "Invincible")
+        if (other.gameObject.layer == LayerMask.NameToLayer("InvincibleLight"))
         {
             isTargetable = false;
         }
@@ -105,7 +103,7 @@ public abstract class Follower : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.gameObject.tag == "Invincible")
+        if (other.gameObject.layer == LayerMask.NameToLayer("InvincibleLight"))
         {
             isTargetable = true;
         }
@@ -119,10 +117,4 @@ public abstract class Follower : MonoBehaviour
                 isTargetable = false;
         }
     }
-}
-
-public interface IHealth
-{
-    void UpdateHealth(int amount);
-    void Die();
 }
