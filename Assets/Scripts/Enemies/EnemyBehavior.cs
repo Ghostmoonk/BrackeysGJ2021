@@ -9,9 +9,11 @@ public class EnemyBehavior : MonoBehaviour
 {
     NavMeshAgent agent;
 
+
     private void Start()
     {
         agent = GetComponent<NavMeshAgent>();
+
     }
 
     public void GoToTarget(Transform target)

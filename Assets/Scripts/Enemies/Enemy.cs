@@ -37,7 +37,7 @@ public class Enemy : MonoBehaviour
 
     Vector3 fleeDirection;
 
-    EnemyState state;
+    public EnemyState state;
 
     #region Collisions
     [SerializeField]
@@ -89,7 +89,7 @@ public class Enemy : MonoBehaviour
             else
                 moveVelocity = fleeDirection.normalized * fleeSpeed * Time.deltaTime;
 
-            Debug.Log(fleeDirection);
+
             enemyBehavior.Move(moveVelocity);
             return;
         }

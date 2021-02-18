@@ -45,7 +45,7 @@ public class PlayerController : MonoBehaviour
         if (new Vector3(xMove, 0f, zMove).normalized != Vector3.zero)
         {
             currentAccel += Time.deltaTime;
-            print(currentAccel);
+
         }
         else
         {
