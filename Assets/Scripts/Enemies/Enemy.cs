@@ -43,7 +43,7 @@ public class Enemy : MonoBehaviour, IHealth
     int currentHealth;
 
     Vector3 fleeDirection;
-    EnemyState state;
+    public EnemyState state;
 
     #region Collisions
     [Header("Collision")]
