@@ -8,7 +8,13 @@ public class PlayerLead : MonoBehaviour
     List<Follower> followers;
 
     Inventory inventory;
-
+    public Inventory Inventory
+    {
+        get
+        {
+            return inventory;
+        }
+    }
     [SerializeField]
     LayerMask followerMask;
     LayerMask enemyMask;
@@ -16,21 +22,19 @@ public class PlayerLead : MonoBehaviour
     [SerializeField]
     float appendFollowerRadius = 5f;
 
-    [SerializeField]
-    SphereCollider lightSphereCol;
-
     private void Start()
     {
         followers = new List<Follower>();
 
-        if (GetComponent<Inventory>() == null)
-        {
-            gameObject.AddComponent<Inventory>();
-        }
+        inventory = GetComponent<Inventory>();
     }
 
     private void Update()
     {
+        if (Input.GetKeyDown(KeyCode.F))
+        {
+            inventory.AddItem(ItemType.Sword);
+        }
         //If a waiting follower is in range, add him in the follower list
         Collider[] followerColliders = Physics.OverlapSphere(transform.position, appendFollowerRadius, followerMask);
         foreach (Collider followerCollider in followerColliders)
@@ -89,11 +93,8 @@ public class PlayerLead : MonoBehaviour
 
     private void OnDrawGizmos()
     {
-        Gizmos.color = new Color(1f, 0f, 0f, 0.2f);
+        Gizmos.color = new Color(1f, 0f, 0f, 0.8f);
         Gizmos.DrawSphere(transform.position, appendFollowerRadius);
-
-        Gizmos.color = new Color(0.5f, 0.5f, 0f, 0.15f);
-        Gizmos.DrawSphere(transform.position, lightSphereCol.radius);
 
     }
     #region FollowersManagement
@@ -111,11 +112,6 @@ public class PlayerLead : MonoBehaviour
     #endregion
 
     #region Light
-
-    public float GetSafeRadius()
-    {
-        return lightSphereCol.radius;
-    }
 
     public List<Follower> GetFollowers()
     {

@@ -152,24 +152,40 @@ MonoBehaviour:
   attractSpeed: 2
   fleeSpeed: 3.5
   inlightFleeDuration: 3
+  maxHealth: 1
   blockingChaseMask:
     serializedVersion: 2
-    m_Bits: 128
-  LightsColliderMask:
+    m_Bits: 256
+  becomeTargetableAreaMask:
     serializedVersion: 2
-    m_Bits: 0
---- !u!114 &4768990433896698126
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6084120764957332438}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 77d305a300ea70a4c9861e12bbb1bca4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+    m_Bits: 768
+  OnBecomeInvisible:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 6084120764957332439}
+        m_TargetAssemblyTypeName: Enemy, Assembly-CSharp
+        m_MethodName: KillTarget
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 6084120764957332439}
+        m_TargetAssemblyTypeName: Enemy, Assembly-CSharp
+        m_MethodName: Die
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!54 &6084120764957332430
 Rigidbody:
   m_ObjectHideFlags: 0

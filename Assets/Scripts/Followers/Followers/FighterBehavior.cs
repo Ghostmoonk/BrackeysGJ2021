@@ -11,6 +11,7 @@ public class FighterBehavior : FollowerBehavior
 
     public void Attack(Enemy enemy)
     {
+        //Do "physical" stuff like
         //Play attack animation, destroy the enemy then
         Destroy(enemy.gameObject);
     }

@@ -28,12 +28,8 @@ public class FollowerBehavior : MonoBehaviour
 
     private void Update()
     {
-        print(animator);   
         if (animator != null)
-        {
             animator.SetFloat("Move", agent.velocity.magnitude);
-            print(animator.GetFloat("Move"));
-        }
     }
 
     public void GoToTarget(Transform target)

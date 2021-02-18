@@ -8,6 +8,7 @@ TagManager:
   - Invincible
   - Protected
   - Unprotected
+  - Followers
   layers:
   - Default
   - TransparentFX
@@ -17,9 +18,9 @@ TagManager:
   - UI
   - Follower
   - Light
-  - 
-  - 
-  - 
+  - InvincibleLight
+  - ProtectedLight
+  - UnprotectedLight
   - 
   - 
   - 

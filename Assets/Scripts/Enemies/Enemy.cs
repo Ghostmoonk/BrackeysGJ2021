@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 
 public enum EnemyState
@@ -13,7 +14,7 @@ public enum EnemyState
 
 //Brain of the enemy
 [RequireComponent(typeof(EnemyBehavior))]
-public class Enemy : MonoBehaviour
+public class Enemy : MonoBehaviour, IHealth
 {
     #region Components
     EnemyBehavior enemyBehavior;
@@ -22,6 +23,7 @@ public class Enemy : MonoBehaviour
     Transform attractAttachPoint;
     #endregion
 
+    #region Movements
     [Header("Mouvements")]
     [Range(2f, 20f)]
     [SerializeField]
@@ -29,26 +31,37 @@ public class Enemy : MonoBehaviour
     [Range(2f, 20f)]
     [SerializeField]
     float fleeSpeed;
-
     [SerializeField]
     [Range(3f, 10f)]
-    [Tooltip("Durée de fuite lorsque l'enemy se prend une lumière")]
+    [Tooltip("Durée de fuite lorsque l'ennemi se prend une lumière")]
     float inlightFleeDuration;
+    #endregion
+
+    [Header("Health")]
+    [SerializeField]
+    int maxHealth = 1;
+    int currentHealth;
 
     Vector3 fleeDirection;
-
-    public EnemyState state;
+    EnemyState state;
 
     #region Collisions
+    [Header("Collision")]
     [SerializeField]
     LayerMask blockingChaseMask;
     [SerializeField]
-    LayerMask LightsColliderMask;
+    LayerMask becomeTargetableAreaMask;
 
     Collider col;
     float colliderWidth;
     float colliderHeight;
 
+    #endregion
+
+    #region Events
+    [Header("Events")]
+    [SerializeField]
+    UnityEvent OnBecomeInvisible;
     #endregion
 
     bool canAttract
@@ -75,6 +88,8 @@ public class Enemy : MonoBehaviour
 
         colliderWidth = GetComponent<Collider>().bounds.size.x;
         colliderHeight = GetComponent<Collider>().bounds.size.y;
+
+        currentHealth = maxHealth;
     }
 
     private void Update()
@@ -88,7 +103,6 @@ public class Enemy : MonoBehaviour
                 moveVelocity = fleeDirection.normalized * attractSpeed * Time.deltaTime;
             else
                 moveVelocity = fleeDirection.normalized * fleeSpeed * Time.deltaTime;
-
 
             enemyBehavior.Move(moveVelocity);
             return;
@@ -109,7 +123,7 @@ public class Enemy : MonoBehaviour
             currentFollowerTarget = FindClosestTargetableFollower();
         }
         //If he has a target, command the behavior TO SEEK FOR THIS FUCKING BITCH
-        else if (state == EnemyState.Chasing && currentFollowerTarget != null)
+        if (state == EnemyState.Chasing && currentFollowerTarget != null)
         {
             enemyBehavior.GoToTarget(currentFollowerTarget.transform);
         }
@@ -136,7 +150,7 @@ public class Enemy : MonoBehaviour
         }
 
         //On collide with an "invincible" safe light area
-        if (other.gameObject.tag == "Invincible")
+        if (other.gameObject.layer == LayerMask.NameToLayer("InvincibleLight"))
         {
             if (state == EnemyState.Fleeing)
             {
@@ -146,10 +160,33 @@ public class Enemy : MonoBehaviour
             StartCoroutine(FleeAway());
         }
         //On collide with an "protected" safe light area
-        if (other.gameObject.tag == "Protected")
+        if (other.gameObject.layer == LayerMask.NameToLayer("ProtectedLight"))
         {
             isTargetable = true;
+
+            //Notify the closest knight that it is in range
+            KnightFollower closestKnight = FindClosestKnight();
+            if (closestKnight != null)
+                closestKnight.OnEnemyInRange(this);
+
         }
+    }
+
+    private KnightFollower FindClosestKnight()
+    {
+        float minDist = float.MaxValue;
+        KnightFollower closestKnight = null;
+
+        foreach (KnightFollower knight in FindObjectsOfType<KnightFollower>())
+        {
+            float distance = Vector3.Distance(knight.transform.position, transform.position);
+            if (distance < minDist)
+            {
+                closestKnight = knight;
+                minDist = distance;
+            }
+        }
+        return closestKnight;
     }
 
     private bool CheckShouldFlee()
@@ -164,7 +201,6 @@ public class Enemy : MonoBehaviour
             return true;
         else
             return false;
-
     }
 
     private void OnTriggerExit(Collider other)
@@ -179,7 +215,7 @@ public class Enemy : MonoBehaviour
 
             RaycastHit hit;
             Physics.CapsuleCast(bottomSphereCenter, topSphereCenter, colliderWidth, Vector3.zero, out hit, 0f,
-                    LightsColliderMask);
+                    becomeTargetableAreaMask);
 
             //If it is not in light collider
             if (hit.collider == null)
@@ -266,18 +302,22 @@ public class Enemy : MonoBehaviour
     {
         if (state == EnemyState.Attracting)
         {
-            Die();
-            KillTarget();
+            OnBecomeInvisible?.Invoke();
         }
     }
 
-    private void Die()
-    {
-        Destroy(gameObject);
-    }
-
-    private void KillTarget()
+    public void KillTarget()
     {
         Destroy(currentFollowerTarget.gameObject);
+    }
+
+    public void UpdateHealth(int amount)
+    {
+        currentHealth += amount;
+    }
+
+    public void Die()
+    {
+        Destroy(gameObject);
     }
 }

@@ -16,12 +16,14 @@ public class TorchLight : MonoBehaviour
             GameObject areaObjectToSpawn = new GameObject("Light - " + area.safeLevel.ToString());
             areaObjectToSpawn.transform.SetParent(transform);
             areaObjectToSpawn.transform.localPosition = Vector3.zero;
-            areaObjectToSpawn.tag = area.safeLevel.ToString();
+            areaObjectToSpawn.layer = LayerMask.NameToLayer(area.safeLevel.ToString() + "Light");
 
             //Create the sphere collider and assign its radius
             SphereCollider sphereLightCol = areaObjectToSpawn.AddComponent<SphereCollider>();
             sphereLightCol.isTrigger = true;
             sphereLightCol.radius = area.radius;
+
+
         }
     }
 
