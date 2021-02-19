@@ -20,6 +20,9 @@ public class SpawnManager : MonoBehaviour {
     [Tooltip("Modèle du leader"), SerializeField]
     private GameObject prefabLeader;
 
+    [Header("Marqueurs de spawn"), SerializeField]
+    private List<Transform> listeSpawns;
+
     private int difficulty = 0;
 
     void FixedStart() {
@@ -41,10 +44,9 @@ public class SpawnManager : MonoBehaviour {
         int randV = UnityEngine.Random.Range(nbMin, nbMax);
         for (int i = 0; i < randV; i++) {
             GameObject currentVillager = listePrefabVillager[UnityEngine.Random.Range(0, listePrefabVillager.Count)];
-            float pX = gameObject.transform.position.x;
-            float pZ = gameObject.transform.position.z;
-            Vector3 pos = new Vector3(UnityEngine.Random.Range(pX-8, pX+8), 10, UnityEngine.Random.Range(pZ-8, pZ+8));
-            Instantiate(currentVillager, pos, Quaternion.identity);
+            Transform pos = listeSpawns[UnityEngine.Random.Range(0, listeSpawns.Count)];
+            listeSpawns.Remove(pos);
+            Instantiate(currentVillager, pos.position, Quaternion.identity);
         }
     }
 
