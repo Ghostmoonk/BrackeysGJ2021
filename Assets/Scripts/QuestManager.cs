@@ -50,7 +50,7 @@
 //                 conditionClear = true;
 //                 yield break;
 //             }
-//         } else if (randNumQuest == 3) {} else if (randNumQuest == 4) {}
+//         }
 //     }
 
 //     private void QuestClear() {
@@ -69,7 +69,7 @@
 //         } else if (randNumQuest == 2) {
 //             // explorer une partie de la carte
 //             UI.SetMarkRare();
-//         } else if (randNumQuest == 3) {} else if (randNumQuest == 4) {}
+//         }
 //     }
 
 //     private void NewQuest() {
@@ -87,7 +87,7 @@
 //         } else if (randNumQuest == 2) {
 //             // explorer une partie de la carte
 //             conditionInt = Random.Range(2, 6); // Le nombre de chunks à explorer
-//         } else if (randNumQuest == 3) {} else if (randNumQuest == 4) {}
+//         }
 //         conditionIntClear = conditionInt;
 //         UI.SetQuestCondition(randNumQuest, conditionInt); // Envoi des infos à l'UI
 //     }
