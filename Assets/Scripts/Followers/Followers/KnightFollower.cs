@@ -46,7 +46,7 @@ public class KnightFollower : Follower
     public delegate void EnemyInRangeDelegate(Enemy enemy);
     public EnemyInRangeDelegate OnEnemyInRange;
     public EnemyInRangeDelegate OnEnemyOutOfRange;
-
+    
     protected override void Start()
     {
         base.Start();
