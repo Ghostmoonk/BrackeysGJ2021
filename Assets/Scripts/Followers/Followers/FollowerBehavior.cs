@@ -32,7 +32,6 @@ public class FollowerBehavior : MonoBehaviour
     {
         if (animator != null) {
             animator.SetFloat("Move", agent.velocity.magnitude);
-            print(animator.GetFloat("Move"));
             if (followerScript.GetState() == FollowState.Attracted)
             {
                 transform.rotation = Quaternion.identity;

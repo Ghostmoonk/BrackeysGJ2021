@@ -1,12 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 //Handle followers
 public class PlayerLead : MonoBehaviour
 {
     List<Follower> followers;
-
+    public delegate void OnFollowerAdded(Follower f);
+    public delegate void OnFollowerRemoved(Follower f);
+    public static event OnFollowerAdded FollowerAdded; 
+    public static event OnFollowerRemoved FollowerRemoved; 
     Inventory inventory;
     public Inventory Inventory
     {
@@ -102,11 +106,17 @@ public class PlayerLead : MonoBehaviour
     public void AppendFollower(Follower follower)
     {
         followers.Add(follower);
+
+        //trigger event
+        FollowerAdded(follower);
     }
 
     public void RemoveFollower(Follower follower)
     {
         followers.Remove(follower);
+
+        //trigger event
+        FollowerRemoved(follower);
     }
 
     #endregion
