@@ -679,15 +679,15 @@
 }
 
 {
-    "m_SGVersion": 2,
+    "m_SGVersion": 3,
     "m_Type": "UnityEditor.ShaderGraph.Internal.ColorShaderProperty",
     "m_ObjectId": "1be6bad3d078fd87b32f5059a80dfaf7",
     "m_Guid": {
         "m_GuidSerialized": "326c6ba8-102e-47c1-9261-a79f19be76fb"
     },
-    "m_Name": "Tint",
+    "m_Name": "Base Map",
     "m_DefaultReferenceName": "Color_78A92FED",
-    "m_OverrideReferenceName": "_MainColor",
+    "m_OverrideReferenceName": "_BaseColor",
     "m_GeneratePropertyBlock": true,
     "m_Precision": 0,
     "overrideHLSLDeclaration": false,
