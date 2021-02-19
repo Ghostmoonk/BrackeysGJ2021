@@ -8,7 +8,7 @@ TagManager:
   - Invincible
   - Protected
   - Unprotected
-  - Followers
+  - MarkSpawn
   layers:
   - Default
   - TransparentFX
