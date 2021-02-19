@@ -62,7 +62,10 @@ public class Enemy : MonoBehaviour, IHealth
     [Header("Events")]
     [SerializeField]
     UnityEvent OnBecomeInvisible;
+
     #endregion
+
+    KnightFollower knightFollowing;
 
     bool canAttract
     {
@@ -90,6 +93,17 @@ public class Enemy : MonoBehaviour, IHealth
         colliderHeight = GetComponent<Collider>().bounds.size.y;
 
         currentHealth = maxHealth;
+
+    }
+
+    public void RemoveTarget()
+    {
+        currentFollowerTarget = null;
+
+        if (state == EnemyState.Chasing)
+        {
+            state = EnemyState.Waiting;
+        }
     }
 
     private void Update()
@@ -137,9 +151,11 @@ public class Enemy : MonoBehaviour, IHealth
             //Get the follower to attract
             Follower followerAttracted = other.gameObject.GetComponent<SimpleFollower>();
             currentFollowerTarget = followerAttracted;
+
             //Remove him from the follower list and change his state
             FindObjectOfType<PlayerLead>().RemoveFollower(followerAttracted);
             followerAttracted.SetState(FollowState.Attracted);
+
             //The enemy start to attract him in the opposite direction of the leader
             state = EnemyState.Attracting;
             fleeDirection = transform.position - FindObjectOfType<PlayerLead>().transform.position;
@@ -147,6 +163,15 @@ public class Enemy : MonoBehaviour, IHealth
 
             followerAttracted.transform.SetParent(attractAttachPoint);
             followerAttracted.transform.localPosition = Vector3.zero;
+
+            //Notify all enemy to stop target this follower
+            foreach (Enemy enemy in FindObjectsOfType<Enemy>())
+            {
+                if (enemy.GetCurrentFollowerTarget())
+                {
+                    enemy.RemoveTarget();
+                }
+            }
         }
 
         //On collide with an "invincible" safe light area
@@ -160,16 +185,23 @@ public class Enemy : MonoBehaviour, IHealth
             StartCoroutine(FleeAway());
         }
         //On collide with an "protected" safe light area
-        if (other.gameObject.layer == LayerMask.NameToLayer("ProtectedLight"))
+        if (becomeTargetableAreaMask == (becomeTargetableAreaMask | (1 << other.gameObject.layer)))
         {
             isTargetable = true;
 
             //Notify the closest knight that it is in range
             KnightFollower closestKnight = FindClosestKnight();
             if (closestKnight != null)
+            {
                 closestKnight.OnEnemyInRange(this);
-
+                knightFollowing = closestKnight;
+            }
         }
+    }
+
+    public Follower GetCurrentFollowerTarget()
+    {
+        return currentFollowerTarget;
     }
 
     private KnightFollower FindClosestKnight()
@@ -180,7 +212,7 @@ public class Enemy : MonoBehaviour, IHealth
         foreach (KnightFollower knight in FindObjectsOfType<KnightFollower>())
         {
             float distance = Vector3.Distance(knight.transform.position, transform.position);
-            if (distance < minDist)
+            if (distance < minDist && distance < knight.MaxSpotingRangeRadius)
             {
                 closestKnight = knight;
                 minDist = distance;
@@ -206,22 +238,32 @@ public class Enemy : MonoBehaviour, IHealth
     private void OnTriggerExit(Collider other)
     {
         //When the enemy get out of the protective light
-        if (other.gameObject.tag == "Protected")
+        if (other.gameObject.layer == LayerMask.NameToLayer("ProtectedLight"))
         {
-            //Check if he is not in another
-            //Cast a capsule from the current collider shape
-            Vector3 bottomSphereCenter = new Vector3(transform.position.x, transform.position.y - colliderHeight / 4, transform.position.z);
-            Vector3 topSphereCenter = new Vector3(transform.position.x, transform.position.y + colliderHeight / 4, transform.position.z);
-
-            RaycastHit hit;
-            Physics.CapsuleCast(bottomSphereCenter, topSphereCenter, colliderWidth, Vector3.zero, out hit, 0f,
-                    becomeTargetableAreaMask);
-
-            //If it is not in light collider
-            if (hit.collider == null)
+            isTargetable = false;
+            if (knightFollowing != null)
             {
-                isTargetable = false;
-                return;
+                knightFollowing.OnEnemyOutOfRange(this);
+                knightFollowing = null;
+            }
+
+        }
+    }
+
+    private void OnTriggerStay(Collider other)
+    {
+        //On stay on a protective light
+        if (becomeTargetableAreaMask == (becomeTargetableAreaMask | (1 << other.gameObject.layer)))
+        {
+            if (!isTargetable)
+                isTargetable = true;
+            //Notify the closest knight that it is in range
+            if (knightFollowing == null)
+            {
+                KnightFollower closestKnight = FindClosestKnight();
+
+                if (closestKnight != null)
+                    closestKnight.OnEnemyInRange(this);
             }
         }
     }
@@ -235,13 +277,10 @@ public class Enemy : MonoBehaviour, IHealth
         //Go through every follower
         foreach (Follower follower in currentFollowers)
         {
-            if (follower.IsTargetable)
+            if (follower.IsTargetable && follower.GetType() != typeof(KnightFollower))
             {
-                //Find if there is no light between
                 RaycastHit hit;
-                // Debug.DrawRay(transform.position, follower.transform.position - transform.position, Color.yellow, 1f);
-                // Physics.Raycast(transform.position, follower.transform.position - transform.position, out hit, Vector3.Distance(transform.position, follower.transform.position), blockingChaseMask);
-
+                //Find if there is no light between
                 //Cast a capsule from the current collider shape
                 Vector3 bottomSphereCenter = new Vector3(transform.position.x, transform.position.y - colliderHeight / 4, transform.position.z);
                 Vector3 topSphereCenter = new Vector3(transform.position.x, transform.position.y + colliderHeight / 4, transform.position.z);
@@ -314,10 +353,17 @@ public class Enemy : MonoBehaviour, IHealth
     public void UpdateHealth(int amount)
     {
         currentHealth += amount;
+
+        if (currentHealth <= 0)
+        {
+            Die();
+        }
     }
 
     public void Die()
     {
         Destroy(gameObject);
     }
+
+    public int GetCurrentHealth() => currentHealth;
 }

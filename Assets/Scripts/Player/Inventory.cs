@@ -33,12 +33,12 @@ public class Inventory : MonoBehaviour
         if (itemsDico.ContainsKey(itemType))
         {
             itemsDico[itemType] -= 1;
+            inventoryUI.UpdateItemTextCount(itemType, itemsDico[itemType]);
 
             if (itemsDico[itemType] == 0)
             {
                 itemsDico.Remove(itemType);
             }
-            inventoryUI.UpdateItemTextCount(itemType, itemsDico[itemType]);
             return true;
         }
         else

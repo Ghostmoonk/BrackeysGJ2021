@@ -10,15 +10,17 @@ public enum FollowState
 }
 
 [RequireComponent(typeof(FollowerBehavior))]
-public abstract class Follower : MonoBehaviour
+public abstract class Follower : MonoBehaviour, IHealth
 {
     #region Components
-
     protected FollowerBehavior followBehavior;
-
     #endregion
 
-    protected FollowState followState;
+    [SerializeField]
+    protected int maxHealth;
+    protected int currentHealth;
+
+    protected FollowState followState = FollowState.Waiting;
     protected Transform currentTarget;
     public Transform CurrentTarget
     {
@@ -42,7 +44,8 @@ public abstract class Follower : MonoBehaviour
         followBehavior = GetComponent<FollowerBehavior>();
 
         isTargetable = true;
-        followState = FollowState.Waiting;
+
+        currentHealth = maxHealth;
     }
 
     protected virtual void Update()
@@ -65,8 +68,8 @@ public abstract class Follower : MonoBehaviour
         if (currentTarget != null && followState == FollowState.Following)
         {
             //If he is already at destination, return
-            if (followBehavior.CheckDestinationReached(currentTarget))
-                return;
+            //if (followBehavior.CheckDestinationReached(currentTarget))
+            //    return;
 
             //He is not at destination, if it is stopped, activate it and go to target
             if (!followBehavior.IsNavMeshEnabled())
@@ -78,7 +81,7 @@ public abstract class Follower : MonoBehaviour
     }
 
     //Set the target to the current target. Can be null
-    public void SetTarget(Transform _target)
+    public virtual void SetTarget(Transform _target)
     {
         currentTarget = _target;
         SetState(FollowState.Following);
@@ -116,5 +119,22 @@ public abstract class Follower : MonoBehaviour
             if (isTargetable)
                 isTargetable = false;
         }
+    }
+
+    public void UpdateHealth(int amount)
+    {
+        currentHealth += amount;
+        currentHealth = Mathf.Clamp(currentHealth, 0, maxHealth);
+        if (currentHealth == 0)
+        {
+            Die();
+        }
+    }
+
+    public int GetCurrentHealth() => currentHealth;
+
+    public void Die()
+    {
+        Destroy(gameObject);
     }
 }

@@ -16,7 +16,8 @@ public class FollowerBehavior : MonoBehaviour
     Follower followerScript;
     float destinationReachedThreshold = 3f;
     public Animator animator;
-
+    //[SerializeField]
+    //float destinationReachedThreshold = 3f;
     protected virtual void Start()
     {
         followerScript = GetComponent<Follower>();

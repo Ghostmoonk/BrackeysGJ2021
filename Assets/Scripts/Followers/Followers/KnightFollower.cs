@@ -12,21 +12,31 @@ using UnityEngine.Events;
 // - An attack range, if an enemy is inside, fire attack
 
 [RequireComponent(typeof(FighterBehavior))]
-public class KnightFollower : Follower, IHealth
+public class KnightFollower : Follower
 {
     FighterBehavior fighterBehavior;
+    KnightAttackTrigger knightAttackTrigger;
 
     [Header("Health")]
     [Tooltip("Nombre de fois que le chevalier va pouvoir tanker")]
-    [SerializeField]
-    int maxHealth;
-    int currentHealth;
     [SerializeField]
     UnityEvent OnLastHeadRemoved;
 
     [Header("Attack")]
     [SerializeField]
-    float attackRange;
+    float maxSpotingRangeRadius = 20f;
+    public float MaxSpotingRangeRadius
+    {
+        get
+        {
+            return maxSpotingRangeRadius;
+        }
+    }
+
+    [SerializeField]
+    float stoppingDistToEnemy = 1f;
+    [SerializeField]
+    int attackDamages;
     [SerializeField]
     LayerMask enemyMask;
 
@@ -35,18 +45,22 @@ public class KnightFollower : Follower, IHealth
 
     public delegate void EnemyInRangeDelegate(Enemy enemy);
     public EnemyInRangeDelegate OnEnemyInRange;
+    public EnemyInRangeDelegate OnEnemyOutOfRange;
 
     protected override void Start()
     {
         base.Start();
         fighterBehavior = (FighterBehavior)followBehavior;
+        knightAttackTrigger = GetComponentInChildren<KnightAttackTrigger>();
 
+        //Delegates
         OnEnemyInRange += SetTarget;
+        OnEnemyOutOfRange += UnsetEnemyTarget;
+        knightAttackTrigger.EnemyAttackable += PerformAttack;
     }
 
     protected override void Update()
     {
-
         //If the follower waits and his navmesh is disable, reactivate it
         if (followState == FollowState.Waiting && !followBehavior.IsNavMeshEnabled())
         {
@@ -56,10 +70,6 @@ public class KnightFollower : Follower, IHealth
         //If the follower has a target and is following
         if (currentTarget != null && followState == FollowState.Following)
         {
-            //If he is already at destination, return
-            if (followBehavior.CheckDestinationReached(currentTarget))
-                return;
-
             //He is not at destination, if it is stopped, activate it and go to target
             if (!followBehavior.IsNavMeshEnabled())
                 followBehavior.ToggleNavMesh(true);
@@ -68,35 +78,33 @@ public class KnightFollower : Follower, IHealth
         }
     }
 
-    private void FixedUpdate()
+    public void PerformAttack(Enemy enemy)
     {
-        //Every frame, raycast in front of him to check if there is an enemy to attack
-        RaycastHit hit;
-        Physics.Raycast(transform.position, transform.forward, out hit, attackRange, enemyMask);
-
-        //Knight has an enemy in range
-        if (hit.collider != null)
-        {
-            Enemy enemy = hit.collider.GetComponent<Enemy>();
-
-            if (enemy != null)
-                fighterBehavior.Attack(enemy);
-        }
-    }
-
-    public void UpdateHealth(int amount)
-    {
-        currentHealth += amount;
-        currentHealth = Mathf.Clamp(currentHealth, 0, maxHealth);
-        if (currentHealth == 0)
-        {
-            OnLastHeadRemoved?.Invoke();
-        }
+        fighterBehavior.Attack(enemy, attackDamages);
+        UpdateHealth(-1);
+        SetTarget(FindObjectOfType<PlayerLead>().transform);
     }
 
     public void SetTarget(Enemy enemy)
     {
         currentTarget = enemy.transform;
+        fighterBehavior.SetNewStoppingDist(stoppingDistToEnemy);
+    }
+
+    public override void SetTarget(Transform _target)
+    {
+        followState = FollowState.Following;
+        base.SetTarget(_target);
+        if (fighterBehavior != null)
+            fighterBehavior.ResetStoppingDistance();
+    }
+
+    public void UnsetEnemyTarget(Enemy enemy)
+    {
+        if (currentTarget == enemy.transform)
+        {
+            SetTarget(FindObjectOfType<PlayerLead>().transform);
+        }
     }
 
     public void SpawnFollower()
@@ -109,10 +117,21 @@ public class KnightFollower : Follower, IHealth
         Destroy(gameObject);
     }
 
-    public void Die()
+    public new void Die()
     {
         SpawnFollower();
         Destroy(gameObject);
+    }
+
+    public new void UpdateHealth(int amount)
+    {
+        currentHealth += amount;
+        currentHealth = Mathf.Clamp(currentHealth, 0, maxHealth);
+
+        if (currentHealth == 0)
+        {
+            OnLastHeadRemoved?.Invoke();
+        }
     }
 }
 
@@ -120,4 +139,5 @@ public interface IHealth
 {
     void UpdateHealth(int amount);
     void Die();
+    int GetCurrentHealth();
 }
