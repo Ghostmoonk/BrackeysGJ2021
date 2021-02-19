@@ -9,6 +9,7 @@ TagManager:
   - Protected
   - Unprotected
   - MarkSpawn
+  - Followers
   layers:
   - Default
   - TransparentFX
@@ -22,7 +23,7 @@ TagManager:
   - ProtectedLight
   - UnprotectedLight
   - Enemy
-  - 
+  - PostProcesing
   - 
   - 
   - 
