@@ -259,7 +259,7 @@ MonoBehaviour:
   - {fileID: 8609374417074518762, guid: 4ef12459de3b65c4fba0b43012f0acf5, type: 3}
   prefabBase3:
   - {fileID: 8092282778226047894, guid: 5000dacd23321d6429fea114172ee21e, type: 3}
-  tailleChunks: 20
+  tailleChunks: 50
 --- !u!81 &2146604778
 AudioListener:
   m_ObjectHideFlags: 0

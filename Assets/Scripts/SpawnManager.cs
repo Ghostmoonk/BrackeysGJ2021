@@ -11,21 +11,27 @@ public class SpawnManager : MonoBehaviour {
     [Header("Prefabs et modèles")]
     [Tooltip("Liste des modèles de villageois"), SerializeField]
     private List<GameObject> listePrefabVillager;
-    [Tooltip("Liste des modèles de chevaliers"), SerializeField]
+    // [Tooltip("Liste des modèles de chevaliers"), SerializeField]
     // private List<GameObject> listePrefabKnights;
     // [Tooltip("Liste des modèles de porteurs de torche"), SerializeField]
     // private List<GameObject> listePrefabTorchs;
     // [Tooltip("Modèle du fantôme"), SerializeField]
     private GameObject prefabGhost;
-    [Tooltip("Modèle du leader"), SerializeField]
+    // [Tooltip("Modèle du leader"), SerializeField]
     private GameObject prefabLeader;
 
-    [Header("Marqueurs de spawn"), SerializeField]
     private List<Transform> listeSpawns;
 
     private int difficulty = 0;
 
     void FixedStart() {
+        listeSpawns = new List<Transform>();
+        foreach (Transform child in transform) {
+            if (child.gameObject.CompareTag("MarkSpawn")) {
+                listeSpawns.Add(child);
+            }
+        }
+        Debug.Log(listeSpawns.Count);
         if (mapType == MapType.Spawn) {
             SpawnVillager(4, 4);
         } else if (mapType == MapType.Firecamp) {
