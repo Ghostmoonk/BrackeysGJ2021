@@ -12,9 +12,9 @@ public class FollowerBehavior : MonoBehaviour
     protected NavMeshAgent agent;
     #endregion
 
-    [SerializeField]
-    float destinationReachedThreshold = 3f;
-    Animator animator;
+    //[SerializeField]
+    //float destinationReachedThreshold = 3f;
+    protected Animator animator;
 
     protected virtual void Start()
     {
@@ -52,9 +52,9 @@ public class FollowerBehavior : MonoBehaviour
 
     public bool IsNavMeshAgentStopped() => agent.isStopped;
 
-    public bool CheckDestinationReached(Transform target)
-    {
-        float distToTarget = Vector3.Distance(transform.position, target.position);
-        return distToTarget < destinationReachedThreshold;
-    }
+    //public bool CheckDestinationReached(Transform target)
+    //{
+    //    float distToTarget = Vector3.Distance(transform.position, target.position);
+    //    return distToTarget < destinationReachedThreshold;
+    //}
 }

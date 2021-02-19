@@ -44,16 +44,21 @@ public class FollowerUpgrader : MonoBehaviour
     //Upgrade follower = remove the follower, add a new one depending on item type
     public void UpgradeFollower(Follower follower, ItemType itemType)
     {
-        Debug.Log("Upgrade le follower " + follower.name + " avec une : " + itemType.ToString());
+        if (!FindObjectOfType<PlayerLead>().GetFollowers().Contains(follower))
+            return;
+
         Follower newFollowerToInstantiate = Instantiate(followersItemDico[itemType],
             follower.transform.position,
             follower.transform.rotation,
             GameObject.FindGameObjectWithTag("Followers").transform).GetComponent<Follower>();
 
         newFollowerToInstantiate.SetTarget(follower.CurrentTarget);
+
         playerLead.AppendFollower(newFollowerToInstantiate);
 
         playerLead.RemoveFollower(follower);
+        playerLead.Inventory.RemoveItem(itemType);
+
         Destroy(follower.gameObject);
     }
 }

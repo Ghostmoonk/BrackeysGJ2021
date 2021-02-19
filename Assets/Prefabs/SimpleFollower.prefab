@@ -150,7 +150,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1411122bf6dded14cb174941572edddc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  destinationReachedThreshold: 3
 --- !u!114 &8929516589970706556
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -163,3 +162,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cc801430cb0f723489f47f281a71c9ce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  maxHealth: 1

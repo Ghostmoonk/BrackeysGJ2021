@@ -23,7 +23,6 @@ public class TorchLight : MonoBehaviour
             sphereLightCol.isTrigger = true;
             sphereLightCol.radius = area.radius;
 
-
         }
     }
 
@@ -31,7 +30,7 @@ public class TorchLight : MonoBehaviour
     {
         foreach (LightArea lightArea in lightAreas)
         {
-            Gizmos.color = new Color(Random.Range(0f, 1f), Random.Range(0f, 1f), Random.Range(0f, 1f), 0.25f);
+            Gizmos.color = new Color(0.8f, 0f, 0f, 0.25f);
             Gizmos.DrawSphere(transform.position, lightArea.radius);
         }
     }
