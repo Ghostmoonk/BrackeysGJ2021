@@ -24,7 +24,7 @@ TagManager:
   - ProtectedLight
   - UnprotectedLight
   - Enemy
-  - 
+  - PostProcesing
   - 
   - 
   - 
