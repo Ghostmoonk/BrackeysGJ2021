@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.VFX;
 
 //Handle followers
 public class PlayerLead : MonoBehaviour
@@ -12,6 +13,9 @@ public class PlayerLead : MonoBehaviour
     public static event OnFollowerAdded FollowerAdded; 
     public static event OnFollowerRemoved FollowerRemoved; 
     Inventory inventory;
+
+    public VisualEffect smokePof;
+
     public Inventory Inventory
     {
         get
@@ -31,6 +35,7 @@ public class PlayerLead : MonoBehaviour
         followers = new List<Follower>();
 
         inventory = GetComponent<Inventory>();
+        smokePof = GetComponent<VisualEffect>();
     }
 
     private void Update()
@@ -48,6 +53,7 @@ public class PlayerLead : MonoBehaviour
                 Follower follower = followerCollider.GetComponent<Follower>();
                 if (!followers.Contains(follower) && follower.GetState() == FollowState.Waiting)
                 {
+                    smokePof.Play();
                     AppendFollower(follower);
                     follower.SetTarget(transform);
                 }
