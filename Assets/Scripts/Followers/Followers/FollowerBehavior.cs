@@ -12,9 +12,9 @@ public class FollowerBehavior : MonoBehaviour
     protected NavMeshAgent agent;
     #endregion
 
-    [SerializeField]
     protected Follower followerScript;
     float destinationReachedThreshold = 3f;
+    [HideInInspector]
     public Animator animator;
     //[SerializeField]
     //float destinationReachedThreshold = 3f;
@@ -22,12 +22,8 @@ public class FollowerBehavior : MonoBehaviour
     {
         followerScript = GetComponent<Follower>();
         agent = GetComponent<NavMeshAgent>();
-
-    }
-    private void Awake()
-    {
-        followerScript = GetComponent<Follower>();
         animator = GetComponentInChildren<Animator>();
+
     }
 
     private void Update()
@@ -68,7 +64,6 @@ public class FollowerBehavior : MonoBehaviour
     public void ToggleNavMesh(bool toggle)
     {
         agent.enabled = toggle;
-        Debug.Log(agent.enabled);
     }
 
     public bool IsNavMeshAgentEnabled() => agent.enabled;
