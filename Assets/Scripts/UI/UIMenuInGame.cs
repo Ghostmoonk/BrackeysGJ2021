@@ -10,6 +10,17 @@ public class UIMenuInGame : MonoBehaviour {
         menuInGame.SetActive(false);
     }
 
+    void Update() {
+        if (Input.GetKeyDown("escape")) {
+            if (menuInGame.activeSelf) {
+                MenuDesactive();
+            } else {
+                MenuActive();
+            }
+            
+        }
+    }
+
     public void MenuActive() {
         menuInGame.SetActive(true);
         Time.timeScale = 0.0f;
