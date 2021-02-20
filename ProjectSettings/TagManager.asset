@@ -4,7 +4,12 @@
 TagManager:
   serializedVersion: 2
   tags:
+  - Light
+  - Invincible
+  - Protected
+  - Unprotected
   - MarkSpawn
+  - MenuInGame
   layers:
   - Default
   - TransparentFX
@@ -12,12 +17,12 @@ TagManager:
   - 
   - Water
   - UI
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
+  - Follower
+  - Light
+  - InvincibleLight
+  - ProtectedLight
+  - UnprotectedLight
+  - Enemy
   - 
   - 
   - 

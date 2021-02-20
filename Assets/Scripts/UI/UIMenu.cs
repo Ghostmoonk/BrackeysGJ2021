@@ -13,6 +13,7 @@ public class UIMenu : MonoBehaviour {
     void Start() {
         confirmationWindow.SetActive(false);
     }
+    
     public void GoPlay() {
         SceneManager.LoadScene("game");
     }
