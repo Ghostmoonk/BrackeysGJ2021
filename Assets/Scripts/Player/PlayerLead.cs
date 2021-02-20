@@ -14,7 +14,8 @@ public class PlayerLead : MonoBehaviour
     public static event OnFollowerRemoved FollowerRemoved; 
     Inventory inventory;
 
-    public VisualEffect smokePof;
+    public GameObject smokePofGameObject;
+    VisualEffect smokePof;
 
     public Inventory Inventory
     {
@@ -35,7 +36,7 @@ public class PlayerLead : MonoBehaviour
         followers = new List<Follower>();
 
         inventory = GetComponent<Inventory>();
-        smokePof = GetComponent<VisualEffect>();
+        smokePof = smokePofGameObject.GetComponent<VisualEffect>();
     }
 
     private void Update()
@@ -53,6 +54,7 @@ public class PlayerLead : MonoBehaviour
                 Follower follower = followerCollider.GetComponent<Follower>();
                 if (!followers.Contains(follower) && follower.GetState() == FollowState.Waiting)
                 {
+                    smokePofGameObject.transform.position = followerCollider.transform.position;
                     smokePof.Play();
                     AppendFollower(follower);
                     follower.SetTarget(transform);
