@@ -39,6 +39,7 @@ public class EndGame : MonoBehaviour {
     private void End() {
         int nbFollowers = MainCharacter.GetComponent<PlayerLead>().GetFollowers().Count;
         CanvasEndGame.SetActive(true);
+        Time.timeScale = 0.0f;
         string t = "Congratulations !\n\n";
         if (!PlayerPrefs.HasKey("bestScore") || nbFollowers > PlayerPrefs.GetInt("bestScore")) {
             PlayerPrefs.SetInt("bestScore", nbFollowers);
