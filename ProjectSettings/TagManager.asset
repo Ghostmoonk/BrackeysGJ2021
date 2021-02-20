@@ -9,6 +9,7 @@ TagManager:
   - Protected
   - Unprotected
   - MarkSpawn
+  - MenuInGame
   - Followers
   - Enemies
   layers:
