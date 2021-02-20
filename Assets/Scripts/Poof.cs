@@ -27,7 +27,6 @@ public class Poof : MonoBehaviour
     IEnumerator PlayAndDestroy()
     {
         effect.Play();
-        Debug.Log(effectDuration);
         yield return new WaitForSeconds(effectDuration);
         Destroy(gameObject);
     }

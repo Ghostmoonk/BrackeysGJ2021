@@ -64,7 +64,7 @@ public class Enemy : MonoBehaviour, IHealth
     //UnityEvent OnBecomeInvisible;
 
     public delegate void OnDie(Enemy enemy);
-    public OnDie OnDieEvent;
+    public static event OnDie OnDieEvent;
 
     #endregion
 

@@ -31,11 +31,13 @@ public class FollowerBehavior : MonoBehaviour
         if (animator != null)
         {
             animator.SetFloat("Move", agent.velocity.magnitude);
+
             if (followerScript.GetState() == FollowState.Attracted)
             {
                 transform.rotation = Quaternion.identity;
                 if (animator.GetBool("isDragged"))
                 {
+                    Debug.Log(animator.GetBool("isDragged"));
                     animator.SetBool("isDragged", true);
                 }
                 
@@ -43,6 +45,16 @@ public class FollowerBehavior : MonoBehaviour
             else
             {
                 animator.SetBool("isDragged", false);
+            }
+
+            if(followerScript.GetState()== FollowState.Following)
+            {
+                animator.SetBool("isFollower", true);
+
+            }
+            else
+            {
+                animator.SetBool("isFollower", false);
             }
         }
     }

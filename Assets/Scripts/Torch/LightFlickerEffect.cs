@@ -11,13 +11,14 @@ using System.Collections.Generic;
 ///
 /// Just activate / deactivate this component as usual to pause / resume flicker
 /// </summary>
-public class LightFlickerEffect : MonoBehaviour {
-    [Tooltip("External light to flicker; you can leave this null if you attach script to a light")]
-    public new Light light;
-    [Tooltip("Minimum random light intensity")]
-    public float minIntensity = 0f;
-    [Tooltip("Maximum random light intensity")]
-    public float maxIntensity = 1f;
+[RequireComponent(typeof(Light))]
+public class LightFlickerEffect : MonoBehaviour
+{
+    new Light light;
+    float minIntensity;
+    float maxIntensity;
+    [SerializeField]
+    float currentLightIntensityOffset = 1f;
     [Tooltip("How much to smooth out the randomness; lower values = sparks, higher = lantern")]
     [Range(1, 50)]
     public int smoothing = 5;
@@ -33,25 +34,38 @@ public class LightFlickerEffect : MonoBehaviour {
     /// this, deactivating/reactivating is usually fine but if you want a strict
     /// restart you can do.
     /// </summary>
-    public void Reset() {
+    public void Reset()
+    {
         smoothQueue.Clear();
         lastSum = 0;
     }
 
-    void Start() {
+    public void UpdateLightFlickerIntensity(float _minIntensity, float _maxIntensity)
+    {
+        minIntensity = _minIntensity;
+        maxIntensity = _maxIntensity;
+    }
+
+    void Start()
+    {
+        light = GetComponent<Light>();
+        UpdateLightFlickerIntensity(light.intensity - currentLightIntensityOffset, light.intensity + currentLightIntensityOffset);
         smoothQueue = new Queue<float>(smoothing);
         // External or internal light?
-        if (light == null) {
+        if (light == null)
+        {
             light = GetComponent<Light>();
         }
     }
 
-    void Update() {
+    void Update()
+    {
         if (light == null)
             return;
 
         // pop off an item if too big
-        while (smoothQueue.Count >= smoothing) {
+        while (smoothQueue.Count >= smoothing)
+        {
             lastSum -= smoothQueue.Dequeue();
         }
 

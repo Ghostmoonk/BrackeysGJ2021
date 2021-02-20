@@ -15,6 +15,7 @@ TagManager:
   - Spawn
   - CanvasEndGame
   - TextEndGame
+  - RefillArea
   layers:
   - Default
   - TransparentFX
@@ -30,7 +31,7 @@ TagManager:
   - Enemy
   - PostProcesing
   - Enviro
-  - 
+  - LightRefill
   - 
   - 
   - 
