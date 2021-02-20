@@ -34,6 +34,17 @@ public class FollowerCounterUI : MonoBehaviour {
         updateTexts(typeDict[follower.GetType()], -1);
     }
 
+    public void increaseTotal(ItemType item) {
+        if(item == ItemType.Sword) {
+            totals[1] += 1;
+            updateTexts(typeDict[typeof(KnightFollower)], 0);
+        }
+        if(item == ItemType.Torch) {
+            totals[2] += 1;
+            updateTexts(typeDict[typeof(TorchedFollower)], 0);
+        }
+    }
+
     private void updateTexts(int i, int value) {
         counters[i] += value;
         countersText[i].text = totals[i] != -1 ? counters[i] + " / " + totals[i] : counters[i].ToString();

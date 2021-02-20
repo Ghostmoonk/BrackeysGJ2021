@@ -7,6 +7,8 @@ public class Inventory : MonoBehaviour
     #region Component
     [SerializeField]
     InventoryUI inventoryUI;
+    [SerializeField]
+    FollowerCounterUI followerCounterUI;
     #endregion
 
     Dictionary<ItemType, int> itemsDico;
@@ -25,6 +27,7 @@ public class Inventory : MonoBehaviour
         itemsDico[itemType] += 1;
 
         inventoryUI.UpdateItemTextCount(itemType, itemsDico[itemType]);
+        followerCounterUI.increaseTotal(itemType);
 
     }
 
