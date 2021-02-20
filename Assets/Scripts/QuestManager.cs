@@ -18,10 +18,8 @@ public class QuestManager : MonoBehaviour {
     Transform spawnReward;
 
     [SerializeField] float delayNextQuest;
-    [SerializeField] int minQuestVillager = 4;
-    [SerializeField] int maxQuestVillager = 10;
-    [SerializeField] int minQuestMonster = 2;
-    [SerializeField] int maxQuestMonster = 5;
+    [SerializeField] Vector2Int MinMaxVillager = new Vector2Int(4, 10);
+    [SerializeField] Vector2Int minMaxMonster = new Vector2Int(2, 5);
 
     void Start() {
         Enemy.OnDieEvent += killedEnemy;
@@ -84,11 +82,11 @@ public class QuestManager : MonoBehaviour {
         ResRandNum();
         if (randNumQuest == 0) {
             // avoir un certain nombre de villageois
-            conditionInt = Random.Range(minQuestVillager, maxQuestVillager); // Le nombre de villageois à obtenir
+            conditionInt = Random.Range(MinMaxVillager.x, MinMaxVillager.y); // Le nombre de villageois à obtenir
             // conditionInt += Crowd.GetNb(); // GET LE NOMBRE ACTUEL DE VILLAGEOIS \\
         } else if (randNumQuest == 1) {
             // tuer un certain nombre de monstres
-            conditionInt = Random.Range(minQuestMonster, maxQuestMonster); // Le nombre de monstres à tuer
+            conditionInt = Random.Range(minMaxMonster.x, minMaxMonster.y); // Le nombre de monstres à tuer
         }
         conditionIntClear = conditionInt;
         yield return new WaitForSeconds(delayNextQuest);
