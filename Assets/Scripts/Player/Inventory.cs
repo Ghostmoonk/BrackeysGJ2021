@@ -47,7 +47,16 @@ public class Inventory : MonoBehaviour
         }
     }
 
-    public int GetItemAmount(ItemType itemType) => itemsDico[itemType];
-
+    public int GetItemAmount(ItemType itemType)
+    {
+        if (itemsDico.ContainsKey(itemType))
+        {
+            return itemsDico[itemType];
+        }
+        else
+        {
+            return 0;
+        }
+    }
 
 }

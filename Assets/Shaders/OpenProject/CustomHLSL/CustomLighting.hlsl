@@ -43,7 +43,7 @@ void DirectSpecular_float(float Smoothness, float3 Direction, float3 WorldNormal
 
 void AdditionalLights_float(float Smoothness, float3 WorldPosition, float3 WorldNormal, float3 WorldView, out float3 Diffuse, out float3 Specular)
 {
-    float3 diffuseColor = 0;
+    float3 diffuseColor = 0;    
     float3 specularColor = 0;
     float4 White = 1;
 

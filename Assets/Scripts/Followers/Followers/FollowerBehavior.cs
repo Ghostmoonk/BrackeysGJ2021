@@ -13,7 +13,7 @@ public class FollowerBehavior : MonoBehaviour
     #endregion
 
     [SerializeField]
-    Follower followerScript;
+    protected Follower followerScript;
     float destinationReachedThreshold = 3f;
     public Animator animator;
     //[SerializeField]
@@ -22,16 +22,18 @@ public class FollowerBehavior : MonoBehaviour
     {
         followerScript = GetComponent<Follower>();
         agent = GetComponent<NavMeshAgent>();
-        
+
     }
     private void Awake()
     {
+        followerScript = GetComponent<Follower>();
         animator = GetComponentInChildren<Animator>();
     }
 
     private void Update()
     {
-        if (animator != null) {
+        if (animator != null)
+        {
             animator.SetFloat("Move", agent.velocity.magnitude);
             if (followerScript.GetState() == FollowState.Attracted)
             {
@@ -44,12 +46,7 @@ public class FollowerBehavior : MonoBehaviour
             }
             else
             {
-                if (animator.GetBool("isDragged"))
-                {
-                    animator.SetBool("isDragged", false);
-                }
-                
-
+                animator.SetBool("isDragged", false);
             }
         }
     }
@@ -72,7 +69,14 @@ public class FollowerBehavior : MonoBehaviour
         //agent.isStopped = _switch;
     }
 
-    public void ToggleNavMesh(bool toggle) => agent.enabled = toggle;
+    public void ToggleNavMesh(bool toggle)
+    {
+        agent.enabled = toggle;
+        Debug.Log(agent.enabled);
+    }
+
+    public bool IsNavMeshAgentEnabled() => agent.enabled;
+
 
     public bool IsNavMeshEnabled() => agent.enabled;
 
@@ -84,10 +88,11 @@ public class FollowerBehavior : MonoBehaviour
         return distToTarget < destinationReachedThreshold;
     }
 
-    public Animator ChangeAnimator(Animator anim) {
-        
+    public Animator ChangeAnimator(Animator anim)
+    {
+
         animator = anim;
-        
+
         return animator;
     }
 }

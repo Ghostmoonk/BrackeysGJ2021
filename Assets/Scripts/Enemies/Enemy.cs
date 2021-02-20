@@ -21,6 +21,8 @@ public class Enemy : MonoBehaviour, IHealth
     Follower currentFollowerTarget;
     [SerializeField]
     Transform attractAttachPoint;
+
+    EnemySpawner itsSpawner;
     #endregion
 
     #region Movements
@@ -96,6 +98,8 @@ public class Enemy : MonoBehaviour, IHealth
 
     }
 
+    public void SetSpawner(EnemySpawner spawner) => itsSpawner = spawner;
+
     public void RemoveTarget()
     {
         currentFollowerTarget = null;
@@ -117,8 +121,8 @@ public class Enemy : MonoBehaviour, IHealth
                 moveVelocity = fleeDirection.normalized * attractSpeed * Time.deltaTime;
             else
                 moveVelocity = fleeDirection.normalized * fleeSpeed * Time.deltaTime;
-
-            enemyBehavior.Move(moveVelocity);
+            Debug.Log(fleeDirection.normalized * 10f);
+            enemyBehavior.GoToTarget(fleeDirection.normalized * 2f);
             return;
         }
 
@@ -148,28 +152,37 @@ public class Enemy : MonoBehaviour, IHealth
         //On collide with a follower, if he can attracts him
         if (other.gameObject.GetComponent<SimpleFollower>() && canAttract)
         {
-            //Get the follower to attract
-            Follower followerAttracted = other.gameObject.GetComponent<SimpleFollower>();
-            currentFollowerTarget = followerAttracted;
-
-            //Remove him from the follower list and change his state
-            FindObjectOfType<PlayerLead>().RemoveFollower(followerAttracted);
-            followerAttracted.SetState(FollowState.Attracted);
-
-            //The enemy start to attract him in the opposite direction of the leader
-            state = EnemyState.Attracting;
-            fleeDirection = transform.position - FindObjectOfType<PlayerLead>().transform.position;
-            enemyBehavior.StopDestination(true);
-
-            followerAttracted.transform.SetParent(attractAttachPoint);
-            followerAttracted.transform.localPosition = Vector3.zero;
-
-            //Notify all enemy to stop target this follower
-            foreach (Enemy enemy in FindObjectsOfType<Enemy>())
+            if (other.gameObject.GetComponent<SimpleFollower>().CanBeAttracted())
             {
-                if (enemy.GetCurrentFollowerTarget())
+                //Get the follower to attract
+                Follower followerAttracted = other.gameObject.GetComponent<SimpleFollower>();
+                currentFollowerTarget = followerAttracted;
+
+                //Remove him from the follower list and change his state
+                FindObjectOfType<PlayerLead>().RemoveFollower(followerAttracted);
+                followerAttracted.SetState(FollowState.Attracted);
+
+                //The enemy start to attract him in the opposite direction of the leader
+                state = EnemyState.Attracting;
+                fleeDirection = new Vector3(
+                    transform.position.x - FindObjectOfType<PlayerLead>().transform.position.x,
+                    transform.position.y,
+                    transform.position.z - FindObjectOfType<PlayerLead>().transform.position.z);
+
+                enemyBehavior.GoToTarget(fleeDirection.normalized * Mathf.Infinity);
+                enemyBehavior.SetNewSpeed(attractSpeed);
+                //enemyBehavior.StopDestination(true);
+
+                followerAttracted.transform.SetParent(attractAttachPoint);
+                followerAttracted.transform.localPosition = Vector3.zero;
+
+                //Notify all enemy to stop target this follower
+                foreach (Enemy enemy in FindObjectsOfType<Enemy>())
                 {
-                    enemy.RemoveTarget();
+                    if (enemy.GetCurrentFollowerTarget())
+                    {
+                        enemy.RemoveTarget();
+                    }
                 }
             }
         }
@@ -246,7 +259,6 @@ public class Enemy : MonoBehaviour, IHealth
                 knightFollowing.OnEnemyOutOfRange(this);
                 knightFollowing = null;
             }
-
         }
     }
 
@@ -277,7 +289,7 @@ public class Enemy : MonoBehaviour, IHealth
         //Go through every follower
         foreach (Follower follower in currentFollowers)
         {
-            if (follower.IsTargetable && follower.GetType() != typeof(KnightFollower))
+            if (follower.IsTargetable && follower.GetType() == typeof(SimpleFollower))
             {
                 RaycastHit hit;
                 //Find if there is no light between
@@ -316,7 +328,7 @@ public class Enemy : MonoBehaviour, IHealth
     //Make the ghost flee away, when it is in light for example
     public IEnumerator FleeAway()
     {
-        if (state == EnemyState.Attracting)
+        if (state == EnemyState.Attracting && currentFollowerTarget != null)
         {
             //Release current target and set his state at waiting
             currentFollowerTarget.transform.SetParent(null);
@@ -326,11 +338,21 @@ public class Enemy : MonoBehaviour, IHealth
             currentFollowerTarget = null;
 
         state = EnemyState.Fleeing;
-        enemyBehavior.StopDestination(true);
-        fleeDirection = transform.position - FindObjectOfType<PlayerLead>().transform.position;
+        //enemyBehavior.StopDestination(true);
+        fleeDirection = fleeDirection = new Vector3(
+                    transform.position.x - FindObjectOfType<PlayerLead>().transform.position.x,
+                    transform.position.y,
+                    transform.position.z - FindObjectOfType<PlayerLead>().transform.position.z);
+
+        enemyBehavior.GoToTarget(fleeDirection.normalized * Mathf.Infinity);
+        enemyBehavior.SetNewSpeed(fleeSpeed);
+
         yield return new WaitForSeconds(inlightFleeDuration);
         if (!CheckShouldFlee())
+        {
             state = EnemyState.Waiting;
+            enemyBehavior.ResetSpeed();
+        }
         else
         {
             StartCoroutine(FleeAway());
@@ -347,7 +369,7 @@ public class Enemy : MonoBehaviour, IHealth
 
     public void KillTarget()
     {
-        Destroy(currentFollowerTarget.gameObject);
+        currentFollowerTarget.Die();
     }
 
     public void UpdateHealth(int amount)
@@ -362,6 +384,7 @@ public class Enemy : MonoBehaviour, IHealth
 
     public void Die()
     {
+        itsSpawner.RemoveEnemy(this);
         Destroy(gameObject);
     }
 
