@@ -9,8 +9,10 @@ TagManager:
   - Protected
   - Unprotected
   - MarkSpawn
+  - MenuInGame
   - Followers
   - Enemies
+  - Spawn
   layers:
   - Default
   - TransparentFX
@@ -25,7 +27,7 @@ TagManager:
   - UnprotectedLight
   - Enemy
   - PostProcesing
-  - 
+  - Enviro
   - 
   - 
   - 
