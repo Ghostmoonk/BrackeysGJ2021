@@ -6,7 +6,32 @@ ModelImporter:
   - first:
       74: 8497560649736722935
     second: pasted__pCylinder11|pasted__pCylinder11|Take 001|BaseLayer
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: lambert1
+    second: {fileID: 2100000, guid: 94403e25e671ae545a138edf6e82a82a, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: pasted__lambert44
+    second: {fileID: 2100000, guid: e4ff840551f71d84f8ffc00eca5b2747, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: pasted__lambert45
+    second: {fileID: 2100000, guid: 5391f873405eb4d4284641c27d9d4699, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: pasted__lambert46
+    second: {fileID: 2100000, guid: dbdc6d1cd607ba749a26cae38bfd4cbf, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: pasted__lambert47
+    second: {fileID: 2100000, guid: 5abcb503cce77af41b0fec96146ca05a, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
