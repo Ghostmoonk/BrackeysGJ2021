@@ -33,15 +33,15 @@ public class SpawnManager : MonoBehaviour {
         }
         Debug.Log(listeSpawns.Count);
         if (mapType == MapType.Spawn) {
-            SpawnVillager(4, 4);
+            SpawnVillager(4, 8);
         } else if (mapType == MapType.Firecamp) {
-            SpawnVillager(2, 6);
+            SpawnVillager(6, 10);
         } else if (mapType == MapType.Base) {
             // 1 2 pour une difficulté de 1
             // 3 4 pour une difficulté de 2
             // 4 7 pour une difficulté de 3
-            int min = (int)Math.Abs(1.4*(difficulty*1.5));
-            int max = (int)Math.Abs(1.4*(difficulty*2));
+            int min = (int)Math.Abs(1.4*(difficulty*2));
+            int max = (int)Math.Abs(1.4*(difficulty*3));
             SpawnVillager(min, max);
         }
     }
