@@ -286,10 +286,10 @@ VisualEffect:
   m_GameObject: {fileID: 630112238}
   m_Enabled: 1
   m_Asset: {fileID: 8926484042661614526, guid: ff62db8248db96b4187a209b2d9fb799, type: 3}
-  m_InitialEventName: OnPlay
-  m_InitialEventNameOverriden: 0
+  m_InitialEventName: 
+  m_InitialEventNameOverriden: 1
   m_StartSeed: 0
-  m_ResetSeedOnPlay: 1
+  m_ResetSeedOnPlay: 0
   m_ResourceVersion: 1
   m_PropertySheet:
     m_Float:
@@ -1169,7 +1169,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 854602814773375526, guid: 1d75a76735d5929488614a3cbdb8b979, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0
+      value: 40
       objectReference: {fileID: 0}
     - target: {fileID: 854602814773375526, guid: 1d75a76735d5929488614a3cbdb8b979, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -1393,7 +1393,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7681968150074906275, guid: 1d75a76735d5929488614a3cbdb8b979, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 7681968150074906275, guid: 1d75a76735d5929488614a3cbdb8b979, type: 3}
       propertyPath: m_AnchoredPosition.y
