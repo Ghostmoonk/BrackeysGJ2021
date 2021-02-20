@@ -66,7 +66,7 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 1
-  m_Speed: 3.5
+  m_Speed: 5
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 120
@@ -312,6 +312,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 2100000, guid: b42d3791bdbc7234485df7e088b45b41, type: 2}
     - target: {fileID: 5866666021909216657, guid: 362674133611a3048845d3b4af00d828, type: 3}
+      propertyPath: m_Avatar
+      value: 
+      objectReference: {fileID: 9000000, guid: 362674133611a3048845d3b4af00d828, type: 3}
+    - target: {fileID: 5866666021909216657, guid: 362674133611a3048845d3b4af00d828, type: 3}
       propertyPath: m_Controller
       value: 
       objectReference: {fileID: 9100000, guid: a4d2f14e68f7f3d4db83e37338934601, type: 2}
@@ -413,6 +417,10 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: b42d3791bdbc7234485df7e088b45b41, type: 2}
+    - target: {fileID: 5866666021909216657, guid: 78affbf712485114bbf6fa2640e4e196, type: 3}
+      propertyPath: m_Avatar
+      value: 
+      objectReference: {fileID: 9000000, guid: 78affbf712485114bbf6fa2640e4e196, type: 3}
     - target: {fileID: 5866666021909216657, guid: 78affbf712485114bbf6fa2640e4e196, type: 3}
       propertyPath: m_Controller
       value: 
