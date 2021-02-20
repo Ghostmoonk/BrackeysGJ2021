@@ -1,55 +1,5 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &2035891726
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 2035891727}
-  - component: {fileID: 2035891728}
-  m_Layer: 0
-  m_Name: TorchLight
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &2035891727
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2035891726}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 2405439759369737856}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2035891728
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2035891726}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6e2108d7438feee469e759d33b846686, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  lightAreas:
-  - radius: 2
-    safeLevel: 0
-  - radius: 5
-    safeLevel: 1
-  - radius: 8
-    safeLevel: 2
 --- !u!1 &2405439759369737867
 GameObject:
   m_ObjectHideFlags: 0
@@ -83,7 +33,6 @@ Transform:
   m_LocalPosition: {x: 0, y: 1.25, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 2035891727}
   - {fileID: 116059802051283768}
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -204,6 +153,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f2f72bc82fa019841ab775bf72013d3f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  smokePof: {fileID: 0}
   followerMask:
     serializedVersion: 2
     m_Bits: 64
@@ -234,7 +184,7 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: e8ebd9516ca0307408dfcba673933712, type: 2}
     - target: {fileID: -8679921383154817045, guid: d25189336b24ba84ca8589446efe6c44, type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: d25189336b24ba84ca8589446efe6c44, type: 3}
       propertyPath: m_LocalScale.x

@@ -2,15 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(LightFlickerEffect))]
 [RequireComponent(typeof(SphereCollider))]
 public class TorchLight : MonoBehaviour
 {
     [Tooltip("Les zones de lumières associées à un état safe")]
-    [SerializeField] LightArea[] initialLightAreas;
-    LightFlickerEffect lightFlicker;
+    [SerializeField]
+    LightArea[] initialLightAreas;
 
-    [Header("Decrease Light")]
+    [Header("Light evolution")]
     //[SerializeField]
     //float decreaseInvincibleLightRadiusPerSeconds;
     //[SerializeField]
@@ -19,6 +18,8 @@ public class TorchLight : MonoBehaviour
     //float decreaseUnprotectedLightRadiusPerSeconds;
     [SerializeField]
     float decreaseLightRadiusPerSecond;
+    [SerializeField]
+    float increaseLightRadiusPerSecond;
 
     Dictionary<SafeLevel, LightArea> lightAreasDico;
     Dictionary<SafeLevel, SphereCollider> lightSphereColliders;
@@ -32,9 +33,10 @@ public class TorchLight : MonoBehaviour
 
     private void Start()
     {
+        lightAreasDico = new Dictionary<SafeLevel, LightArea>();
+
         lightSphereColliders = new Dictionary<SafeLevel, SphereCollider>();
         lights = new Dictionary<SafeLevel, Light>();
-        lightFlicker = GetComponent<LightFlickerEffect>();
         col = GetComponent<SphereCollider>();
 
         //For every light area needed
@@ -60,6 +62,13 @@ public class TorchLight : MonoBehaviour
             light.color = area.lightColor;
             lights.Add(area.safeLevel, light);
 
+            lightAreasDico.Add(area.safeLevel, area);
+
+            if (area.willFlicker)
+            {
+                LightFlickerEffect lightFlicker = areaObjectToSpawn.AddComponent<LightFlickerEffect>();
+                lightFlicker.smoothing = area.flickSmoothness;
+            }
         }
     }
 
@@ -70,32 +79,41 @@ public class TorchLight : MonoBehaviour
             foreach (KeyValuePair<SafeLevel, Light> light in lights)
             {
                 light.Value.range -= Time.deltaTime * decreaseLightRadiusPerSecond;
-                light.Value.range = Mathf.Clamp(light.Value.range, lightAreasDico[light.Key].minRadius, float.PositiveInfinity);
+                light.Value.range = Mathf.Clamp(light.Value.range, lightAreasDico[light.Key].minRadius, lightAreasDico[light.Key].maxRadius);
             }
             foreach (KeyValuePair<SafeLevel, SphereCollider> lightSphereCol in lightSphereColliders)
             {
                 lightSphereCol.Value.radius -= Time.deltaTime * decreaseLightRadiusPerSecond;
-                lightSphereCol.Value.radius = Mathf.Clamp(lightSphereCol.Value.radius, lightAreasDico[lightSphereCol.Key].minRadius, float.PositiveInfinity);
+                lightSphereCol.Value.radius = Mathf.Clamp(lightSphereCol.Value.radius, lightAreasDico[lightSphereCol.Key].minRadius, lightAreasDico[lightSphereCol.Key].maxRadius);
             }
         }
         else
         {
             foreach (KeyValuePair<SafeLevel, Light> light in lights)
             {
-                light.Value.range += Time.deltaTime * decreaseLightRadiusPerSecond;
-                light.Value.range = Mathf.Clamp(light.Value.range, lightAreasDico[light.Key].maxRadius, float.PositiveInfinity);
+                light.Value.range += Time.deltaTime * increaseLightRadiusPerSecond;
+                light.Value.range = Mathf.Clamp(light.Value.range, lightAreasDico[light.Key].minRadius, lightAreasDico[light.Key].maxRadius);
             }
             foreach (KeyValuePair<SafeLevel, SphereCollider> lightSphereCol in lightSphereColliders)
             {
-                lightSphereCol.Value.radius += Time.deltaTime * decreaseLightRadiusPerSecond;
-                lightSphereCol.Value.radius = Mathf.Clamp(lightSphereCol.Value.radius, lightAreasDico[lightSphereCol.Key].maxRadius, float.PositiveInfinity);
+                lightSphereCol.Value.radius += Time.deltaTime * increaseLightRadiusPerSecond;
+                lightSphereCol.Value.radius = Mathf.Clamp(lightSphereCol.Value.radius, lightAreasDico[lightSphereCol.Key].minRadius, lightAreasDico[lightSphereCol.Key].maxRadius);
+            }
+        }
+        foreach (KeyValuePair<SafeLevel, Light> light in lights)
+        {
+            if (lightAreasDico[light.Key].willFlicker)
+            {
+                light.Value.gameObject.GetComponent<LightFlickerEffect>().UpdateLightFlickerIntensity(
+                    light.Value.intensity - lightAreasDico[light.Key].flickIntensityOffset,
+                    light.Value.intensity + lightAreasDico[light.Key].flickIntensityOffset);
             }
         }
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.tag == "RefillArea")
+        if (other.gameObject.tag == "RefillArea")
         {
             refill = true;
         }
@@ -105,7 +123,7 @@ public class TorchLight : MonoBehaviour
     {
         Collider[] lightRefillCols = Physics.OverlapSphere(transform.position, col.radius, lightRefillMask);
 
-        if (lightRefillCols.Length == 0)
+        if (lightRefillCols.Length > 0)
         {
             return;
         }
@@ -135,6 +153,9 @@ public class LightArea
     public SafeLevel safeLevel;
     public float lightIntensity;
     public Color lightColor;
+    public bool willFlicker;
+    public int flickSmoothness;
+    public float flickIntensityOffset;
 }
 
 public enum SafeLevel
