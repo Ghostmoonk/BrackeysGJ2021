@@ -53,7 +53,8 @@ public class EnemySpawner : MonoBehaviour
                     GameObject.FindGameObjectWithTag("Enemies").transform).GetComponent<Enemy>();
                 spawnTimer -= spawnPerSecond * currentSpawnRateMultiplier;
                 enemySpawnedList.Add(spawnedEnemy);
-                spawnedEnemy.SetSpawner(this);
+
+                spawnedEnemy.OnDieEvent += RemoveEnemy;
             }
         }
 

@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.VFX;
 
 
 public enum EnemyState
@@ -21,8 +22,6 @@ public class Enemy : MonoBehaviour, IHealth
     Follower currentFollowerTarget;
     [SerializeField]
     Transform attractAttachPoint;
-
-    EnemySpawner itsSpawner;
     #endregion
 
     #region Movements
@@ -54,18 +53,23 @@ public class Enemy : MonoBehaviour, IHealth
     [SerializeField]
     LayerMask becomeTargetableAreaMask;
 
-    Collider col;
     float colliderWidth;
     float colliderHeight;
 
     #endregion
 
     #region Events
-    [Header("Events")]
-    [SerializeField]
-    UnityEvent OnBecomeInvisible;
+    //[Header("Events")]
+    //[SerializeField]
+    //UnityEvent OnBecomeInvisible;
+
+    public delegate void OnDie(Enemy enemy);
+    public OnDie OnDieEvent;
 
     #endregion
+
+    [SerializeField]
+    float attractTimeToKill = 5f;
 
     KnightFollower knightFollowing;
 
@@ -90,17 +94,16 @@ public class Enemy : MonoBehaviour, IHealth
     private void Start()
     {
         enemyBehavior = GetComponent<EnemyBehavior>();
-
         colliderWidth = GetComponent<Collider>().bounds.size.x;
         colliderHeight = GetComponent<Collider>().bounds.size.y;
 
         currentHealth = maxHealth;
 
+        PoofManager.Instance.InstantiatePoof(transform);
+
     }
 
-    public void SetSpawner(EnemySpawner spawner) => itsSpawner = spawner;
-
-    public void RemoveTarget()
+    public void ClearTarget()
     {
         currentFollowerTarget = null;
 
@@ -110,6 +113,9 @@ public class Enemy : MonoBehaviour, IHealth
         }
     }
 
+
+    float attrackingTimer = 0f;
+
     private void Update()
     {
         //If he is attracting or fleeing
@@ -118,11 +124,22 @@ public class Enemy : MonoBehaviour, IHealth
             Vector3 moveVelocity = Vector3.zero;
 
             if (state == EnemyState.Attracting)
+            {
                 moveVelocity = fleeDirection.normalized * attractSpeed * Time.deltaTime;
+                attrackingTimer += Time.deltaTime;
+
+                if (attrackingTimer >= attractTimeToKill)
+                {
+                    KillTarget();
+                    Die();
+                    return;
+                }
+            }
             else
                 moveVelocity = fleeDirection.normalized * fleeSpeed * Time.deltaTime;
-            Debug.Log(fleeDirection.normalized * 10f);
-            enemyBehavior.GoToTarget(fleeDirection.normalized * 2f);
+
+            //enemyBehavior.GoToTarget(fleeDirection.normalized * 2f);
+            enemyBehavior.Move(moveVelocity);
             return;
         }
 
@@ -140,10 +157,16 @@ public class Enemy : MonoBehaviour, IHealth
             //Find the closest one
             currentFollowerTarget = FindClosestTargetableFollower();
         }
-        //If he has a target, command the behavior TO SEEK FOR THIS FUCKING BITCH
+        //If he has a target, command the behavior search for
         if (state == EnemyState.Chasing && currentFollowerTarget != null)
         {
             enemyBehavior.GoToTarget(currentFollowerTarget.transform);
+        }
+
+        if (state == EnemyState.Chasing && currentFollowerTarget == null)
+        {
+            state = EnemyState.Waiting;
+            enemyBehavior.StopDestination(true);
         }
     }
 
@@ -169,9 +192,9 @@ public class Enemy : MonoBehaviour, IHealth
                     transform.position.y,
                     transform.position.z - FindObjectOfType<PlayerLead>().transform.position.z);
 
-                enemyBehavior.GoToTarget(fleeDirection.normalized * Mathf.Infinity);
+                //enemyBehavior.GoToTarget(fleeDirection.normalized * Mathf.Infinity);
                 enemyBehavior.SetNewSpeed(attractSpeed);
-                //enemyBehavior.StopDestination(true);
+                enemyBehavior.StopDestination(true);
 
                 followerAttracted.transform.SetParent(attractAttachPoint);
                 followerAttracted.transform.localPosition = Vector3.zero;
@@ -179,11 +202,13 @@ public class Enemy : MonoBehaviour, IHealth
                 //Notify all enemy to stop target this follower
                 foreach (Enemy enemy in FindObjectsOfType<Enemy>())
                 {
-                    if (enemy.GetCurrentFollowerTarget())
+                    if (enemy.GetCurrentFollowerTarget() && enemy != this)
                     {
-                        enemy.RemoveTarget();
+                        enemy.ClearTarget();
                     }
                 }
+
+                return;
             }
         }
 
@@ -197,7 +222,7 @@ public class Enemy : MonoBehaviour, IHealth
 
             StartCoroutine(FleeAway());
         }
-        //On collide with an "protected" safe light area
+        //On collide with a "protected" safe light area
         if (becomeTargetableAreaMask == (becomeTargetableAreaMask | (1 << other.gameObject.layer)))
         {
             isTargetable = true;
@@ -212,10 +237,7 @@ public class Enemy : MonoBehaviour, IHealth
         }
     }
 
-    public Follower GetCurrentFollowerTarget()
-    {
-        return currentFollowerTarget;
-    }
+    public Follower GetCurrentFollowerTarget() => currentFollowerTarget;
 
     private KnightFollower FindClosestKnight()
     {
@@ -264,8 +286,8 @@ public class Enemy : MonoBehaviour, IHealth
 
     private void OnTriggerStay(Collider other)
     {
-        //On stay on a protective light
-        if (becomeTargetableAreaMask == (becomeTargetableAreaMask | (1 << other.gameObject.layer)))
+        //When he goes out of protective light and stay on a protective light
+        if (becomeTargetableAreaMask == (becomeTargetableAreaMask | (1 << other.gameObject.layer)) && !isTargetable)
         {
             if (!isTargetable)
                 isTargetable = true;
@@ -330,9 +352,7 @@ public class Enemy : MonoBehaviour, IHealth
     {
         if (state == EnemyState.Attracting && currentFollowerTarget != null)
         {
-            //Release current target and set his state at waiting
-            currentFollowerTarget.transform.SetParent(null);
-            currentFollowerTarget.SetState(FollowState.Waiting);
+            ReleaseCurrentAttractingTarget();
         }
         if (currentFollowerTarget != null)
             currentFollowerTarget = null;
@@ -359,17 +379,29 @@ public class Enemy : MonoBehaviour, IHealth
         }
     }
 
-    private void OnBecameInvisible()
+    public void ReleaseCurrentAttractingTarget()
     {
-        if (state == EnemyState.Attracting)
-        {
-            OnBecomeInvisible?.Invoke();
-        }
+        //Release current target and set his state at waiting
+        currentFollowerTarget.transform.SetParent(GameObject.FindGameObjectWithTag("Followers").transform);
+        currentFollowerTarget.SetState(FollowState.Waiting);
+        currentFollowerTarget.transform.position = attractAttachPoint.position;
+        //currentFollowerTarget.transform.position = new Vector3(attractAttachPoint.position.x, 3f, attractAttachPoint.position.z);
+
+        attrackingTimer = 0f;
     }
+
+    //private void OnBecameInvisible()
+    //{
+    //    if (state == EnemyState.Attracting)
+    //    {
+    //        OnBecomeInvisible?.Invoke();
+    //    }
+    //}
 
     public void KillTarget()
     {
         currentFollowerTarget.Die();
+        currentFollowerTarget = null;
     }
 
     public void UpdateHealth(int amount)
@@ -384,7 +416,13 @@ public class Enemy : MonoBehaviour, IHealth
 
     public void Die()
     {
-        itsSpawner.RemoveEnemy(this);
+        OnDieEvent?.Invoke(this);
+        PoofManager.Instance.InstantiatePoof(transform);
+        if (currentFollowerTarget != null)
+        {
+            ReleaseCurrentAttractingTarget();
+        }
+
         Destroy(gameObject);
     }
 

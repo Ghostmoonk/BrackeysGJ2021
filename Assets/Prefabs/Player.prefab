@@ -46,8 +46,8 @@ MonoBehaviour:
   lightAreas:
   - radius: 2
     safeLevel: 0
-  - radius: 6
-    safeLevel: 2
+  - radius: 5
+    safeLevel: 1
   - radius: 8
     safeLevel: 2
 --- !u!1 &2405439759369737867
@@ -64,7 +64,7 @@ GameObject:
   - component: {fileID: 2405439759369737858}
   - component: {fileID: 2405439759369737857}
   - component: {fileID: 8596800922128706374}
-  - component: {fileID: 6654954245553803887}
+  - component: {fileID: 7330533898559675314}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -208,6 +208,19 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   appendFollowerRadius: 2.5
+--- !u!114 &7330533898559675314
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2405439759369737867}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b91b433ec8a888646bcea35450d26edc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  inventoryUI: {fileID: 0}
 --- !u!1001 &438796102985411795
 PrefabInstance:
   m_ObjectHideFlags: 0

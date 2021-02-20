@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.VFX;
 
 public enum FollowState
 {
@@ -58,6 +59,15 @@ public abstract class Follower : MonoBehaviour, IHealth
             return;
         }
 
+        if (followState == FollowState.Attracted && !GetComponent<Rigidbody>().IsSleeping())
+        {
+            GetComponent<Rigidbody>().Sleep();
+        }
+        else if (followState != FollowState.Attracted && GetComponent<Rigidbody>().IsSleeping())
+        {
+            GetComponent<Rigidbody>().WakeUp();
+        }
+
         //If the follower waits and his navmesh is disable, reactivate it
         if (followState == FollowState.Waiting && !followBehavior.IsNavMeshEnabled())
         {
@@ -77,7 +87,6 @@ public abstract class Follower : MonoBehaviour, IHealth
 
             followBehavior.GoToTarget(currentTarget);
         }
-
     }
 
     //Set the target to the current target. Can be null
@@ -135,6 +144,7 @@ public abstract class Follower : MonoBehaviour, IHealth
 
     public void Die()
     {
+        PoofManager.Instance.InstantiatePoof(transform);
         Destroy(gameObject);
     }
 }
