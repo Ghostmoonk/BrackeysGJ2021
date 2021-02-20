@@ -28,9 +28,9 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 7524319517241224196}
-  m_RootOrder: 8
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1282210399674304158
+--- !u!1 &1499745696660492144
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -38,49 +38,77 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 6799842177705630108}
-  - component: {fileID: 3548909643856437444}
-  - component: {fileID: 1678328627244475826}
-  - component: {fileID: 4044657135465780924}
-  - component: {fileID: 8561628323481142212}
-  - component: {fileID: 8971197510509996928}
+  - component: {fileID: 4372935684465114798}
   m_Layer: 0
-  m_Name: Ground_cimetierre
-  m_TagString: Untagged
+  m_Name: MarkSpawn (5)
+  m_TagString: MarkSpawn
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 4294967295
+  m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &6799842177705630108
+--- !u!4 &4372935684465114798
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1282210399674304158}
+  m_GameObject: {fileID: 1499745696660492144}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.261, y: 0, z: 0.0401}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 7524319517241224196}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1942390544966773395
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3106327283593629719}
+  - component: {fileID: 7670950303984703879}
+  - component: {fileID: 4783017564024070673}
+  - component: {fileID: 5018665894583691736}
+  m_Layer: 0
+  m_Name: Plane
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3106327283593629719
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1942390544966773395}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.099999994, y: 0.099999994, z: 0.099999994}
   m_Children:
   - {fileID: 7524319517120709436}
   m_Father: {fileID: 7524319517241224196}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!33 &3548909643856437444
+--- !u!33 &7670950303984703879
 MeshFilter:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1282210399674304158}
-  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!23 &1678328627244475826
+  m_GameObject: {fileID: 1942390544966773395}
+  m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!23 &4783017564024070673
 MeshRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1282210399674304158}
+  m_GameObject: {fileID: 1942390544966773395}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
@@ -115,93 +143,20 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &4044657135465780924
-BoxCollider:
+--- !u!64 &5018665894583691736
+MeshCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1282210399674304158}
+  m_GameObject: {fileID: 1942390544966773395}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &8561628323481142212
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1282210399674304158}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6de580fe383313c4e83d3e9eedcc2968, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  mapType: 3
-  listePrefabVillager:
-  - {fileID: 6790433691788385515, guid: 5642f8d572eb4d94ba3f3ff9f63ea9d7, type: 3}
---- !u!114 &8971197510509996928
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1282210399674304158}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7a5ac11cc976e418e8d13136b07e1f52, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_AgentTypeID: 0
-  m_CollectObjects: 2
-  m_Size: {x: 10, y: 10, z: 10}
-  m_Center: {x: 0, y: 2, z: 0}
-  m_LayerMask:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_UseGeometry: 0
-  m_DefaultArea: 0
-  m_IgnoreNavMeshAgent: 1
-  m_IgnoreNavMeshObstacle: 1
-  m_OverrideTileSize: 0
-  m_TileSize: 256
-  m_OverrideVoxelSize: 0
-  m_VoxelSize: 0.16666667
-  m_BuildHeightMesh: 0
-  m_NavMeshData: {fileID: 23800000, guid: 9af67c81f811eda4aa1283a6f6c6f4d2, type: 2}
---- !u!1 &1499745696660492144
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 4372935684465114798}
-  m_Layer: 0
-  m_Name: MarkSpawn (5)
-  m_TagString: MarkSpawn
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &4372935684465114798
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1499745696660492144}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.261, y: 0, z: 0.0401}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 7524319517241224196}
-  m_RootOrder: 7
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!1 &3267870148533133087
 GameObject:
   m_ObjectHideFlags: 0
@@ -230,7 +185,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 7524319517241224196}
-  m_RootOrder: 9
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &3750473827724572163
 GameObject:
@@ -260,7 +215,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 7524319517241224196}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &4427486359629410759
 GameObject:
@@ -290,7 +245,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 7524319517241224196}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &4971635176228619255
 GameObject:
@@ -320,7 +275,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 7524319517241224196}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &5119229575339627673
 GameObject:
@@ -350,7 +305,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 7524319517241224196}
-  m_RootOrder: 6
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!65 &2699446217771810649
 BoxCollider:
@@ -391,101 +346,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.99999994, y: 0.59, z: 0.060000032}
   m_Center: {x: -0.0000009536743, y: 0.295, z: -0.49999994}
---- !u!1 &7524319516798186269
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 7524319516798186270}
-  - component: {fileID: 7524319516798186257}
-  - component: {fileID: 7524319516798186256}
-  - component: {fileID: 7524319516798186271}
-  m_Layer: 0
-  m_Name: DetectChunk
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &7524319516798186270
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7524319516798186269}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 20, z: 1}
-  m_Children: []
-  m_Father: {fileID: 7524319517241224196}
-  m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!33 &7524319516798186257
-MeshFilter:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7524319516798186269}
-  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!23 &7524319516798186256
-MeshRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7524319516798186269}
-  m_Enabled: 0
-  m_CastShadows: 1
-  m_ReceiveShadows: 1
-  m_DynamicOccludee: 1
-  m_MotionVectors: 1
-  m_LightProbeUsage: 1
-  m_ReflectionProbeUsage: 1
-  m_RayTracingMode: 2
-  m_RayTraceProcedural: 0
-  m_RenderingLayerMask: 1
-  m_RendererPriority: 0
-  m_Materials:
-  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
-  m_StaticBatchInfo:
-    firstSubMesh: 0
-    subMeshCount: 0
-  m_StaticBatchRoot: {fileID: 0}
-  m_ProbeAnchor: {fileID: 0}
-  m_LightProbeVolumeOverride: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_ReceiveGI: 1
-  m_PreserveUVs: 0
-  m_IgnoreNormalsForChartDetection: 0
-  m_ImportantGI: 0
-  m_StitchLightmapSeams: 1
-  m_SelectedEditorRenderState: 3
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
-  m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &7524319516798186271
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7524319516798186269}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &7524319517120709435
 GameObject:
   m_ObjectHideFlags: 0
@@ -495,7 +355,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7524319517120709436}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Environnement
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -511,7 +371,7 @@ Transform:
   m_GameObject: {fileID: 7524319517120709435}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 10, y: 10, z: 10}
   m_Children:
   - {fileID: 8061858678871691112}
   - {fileID: 8061858679651336808}
@@ -587,7 +447,7 @@ Transform:
   - {fileID: 8061858678500974290}
   - {fileID: 8061858678089953554}
   - {fileID: 8061858679783794747}
-  m_Father: {fileID: 6799842177705630108}
+  m_Father: {fileID: 3106327283593629719}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &7524319517241224192
@@ -618,8 +478,7 @@ Transform:
   m_LocalPosition: {x: 50, y: 0, z: 0}
   m_LocalScale: {x: 50, y: 0.5, z: 50}
   m_Children:
-  - {fileID: 6799842177705630108}
-  - {fileID: 7524319516798186270}
+  - {fileID: 3106327283593629719}
   - {fileID: 7524319518106910432}
   - {fileID: 670797477866273646}
   - {fileID: 3038558008869954111}
@@ -675,7 +534,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 7524319517241224196}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &7808018236224563492
 GameObject:
@@ -705,7 +564,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 7524319517241224196}
-  m_RootOrder: 10
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &7524319516152501106
 PrefabInstance:
@@ -773,6 +632,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 21ae1a3c8da1ed8438d1c61d94a15776, type: 3}
       propertyPath: m_Name
       value: pineCrooked (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 21ae1a3c8da1ed8438d1c61d94a15776, type: 3}
+      propertyPath: m_Layer
+      value: 13
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 21ae1a3c8da1ed8438d1c61d94a15776, type: 3}
@@ -848,6 +711,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: lightpostSingle
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: b7f8d9944f6fa3245b13b4ec9a5a103f, type: 3}
+      propertyPath: m_Layer
+      value: 13
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b7f8d9944f6fa3245b13b4ec9a5a103f, type: 3}
 --- !u!4 &8061858679948110402 stripped
@@ -921,6 +788,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: afec2f5d8c3b7084ba5d8a77892a031d, type: 3}
       propertyPath: m_Name
       value: trunk (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: afec2f5d8c3b7084ba5d8a77892a031d, type: 3}
+      propertyPath: m_Layer
+      value: 13
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: afec2f5d8c3b7084ba5d8a77892a031d, type: 3}
@@ -996,6 +867,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: ironFenceBorder (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 9939e1441bb1f2046ab881d755ff07d1, type: 3}
+      propertyPath: m_Layer
+      value: 13
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9939e1441bb1f2046ab881d755ff07d1, type: 3}
 --- !u!4 &8061858679851720717 stripped
@@ -1069,6 +944,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 9939e1441bb1f2046ab881d755ff07d1, type: 3}
       propertyPath: m_Name
       value: ironFenceBorder
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 9939e1441bb1f2046ab881d755ff07d1, type: 3}
+      propertyPath: m_Layer
+      value: 13
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9939e1441bb1f2046ab881d755ff07d1, type: 3}
@@ -1144,6 +1023,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: stone_smallE (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: f403ecfee9fb4a4478cfaeab1ec8b89c, type: 3}
+      propertyPath: m_Layer
+      value: 13
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f403ecfee9fb4a4478cfaeab1ec8b89c, type: 3}
 --- !u!4 &8061858679783794747 stripped
@@ -1217,6 +1100,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 4b90ba07b30ff4e48a02f162e46f53a8, type: 3}
       propertyPath: m_Name
       value: gravestoneDecorative
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 4b90ba07b30ff4e48a02f162e46f53a8, type: 3}
+      propertyPath: m_Layer
+      value: 13
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4b90ba07b30ff4e48a02f162e46f53a8, type: 3}
@@ -1292,6 +1179,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: graveBorder (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 3aacdd3e4736b1046bbdb9b4ed116625, type: 3}
+      propertyPath: m_Layer
+      value: 13
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3aacdd3e4736b1046bbdb9b4ed116625, type: 3}
 --- !u!4 &8061858679612063067 stripped
@@ -1362,9 +1253,21 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -5966263857221649367, guid: e39825f75450bcb42a20711a13848974, type: 3}
+      propertyPath: m_Layer
+      value: 13
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: e39825f75450bcb42a20711a13848974, type: 3}
       propertyPath: m_Name
       value: fenceDamaged (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: e39825f75450bcb42a20711a13848974, type: 3}
+      propertyPath: m_Layer
+      value: 13
+      objectReference: {fileID: 0}
+    - target: {fileID: 8655916560179723109, guid: e39825f75450bcb42a20711a13848974, type: 3}
+      propertyPath: m_Layer
+      value: 13
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e39825f75450bcb42a20711a13848974, type: 3}
@@ -1436,9 +1339,21 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -5966263857221649367, guid: 8107d8c3e73a5b04d9ea3a92cd42a935, type: 3}
+      propertyPath: m_Layer
+      value: 13
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 8107d8c3e73a5b04d9ea3a92cd42a935, type: 3}
       propertyPath: m_Name
       value: fence (6)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 8107d8c3e73a5b04d9ea3a92cd42a935, type: 3}
+      propertyPath: m_Layer
+      value: 13
+      objectReference: {fileID: 0}
+    - target: {fileID: 8655916560179723109, guid: 8107d8c3e73a5b04d9ea3a92cd42a935, type: 3}
+      propertyPath: m_Layer
+      value: 13
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8107d8c3e73a5b04d9ea3a92cd42a935, type: 3}
@@ -1519,6 +1434,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: grave (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: d23a91ada32330c4a98dbc230530f801, type: 3}
+      propertyPath: m_Layer
+      value: 13
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d23a91ada32330c4a98dbc230530f801, type: 3}
 --- !u!4 &8061858679546736825 stripped
@@ -1592,6 +1511,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: d23a91ada32330c4a98dbc230530f801, type: 3}
       propertyPath: m_Name
       value: grave (8)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: d23a91ada32330c4a98dbc230530f801, type: 3}
+      propertyPath: m_Layer
+      value: 13
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d23a91ada32330c4a98dbc230530f801, type: 3}
@@ -1667,6 +1590,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: gravestoneBevel (4)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 8f45533810aa3cc429f3844854e32ad8, type: 3}
+      propertyPath: m_Layer
+      value: 13
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8f45533810aa3cc429f3844854e32ad8, type: 3}
 --- !u!4 &8061858679460435545 stripped
@@ -1740,6 +1667,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: d23a91ada32330c4a98dbc230530f801, type: 3}
       propertyPath: m_Name
       value: grave (4)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: d23a91ada32330c4a98dbc230530f801, type: 3}
+      propertyPath: m_Layer
+      value: 13
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d23a91ada32330c4a98dbc230530f801, type: 3}
@@ -1815,6 +1746,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: ironFenceBorder (6)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 9939e1441bb1f2046ab881d755ff07d1, type: 3}
+      propertyPath: m_Layer
+      value: 13
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9939e1441bb1f2046ab881d755ff07d1, type: 3}
 --- !u!4 &8061858679399592073 stripped
@@ -1888,6 +1823,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: f70360a3ee50ea741a106152e2cf80b7, type: 3}
       propertyPath: m_Name
       value: stoneWall
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: f70360a3ee50ea741a106152e2cf80b7, type: 3}
+      propertyPath: m_Layer
+      value: 13
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f70360a3ee50ea741a106152e2cf80b7, type: 3}
@@ -1963,6 +1902,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: pine
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: a5a2a28a34b66894ba425ddde5fa1904, type: 3}
+      propertyPath: m_Layer
+      value: 13
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a5a2a28a34b66894ba425ddde5fa1904, type: 3}
 --- !u!4 &8061858679363431763 stripped
@@ -2036,6 +1979,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 3aacdd3e4736b1046bbdb9b4ed116625, type: 3}
       propertyPath: m_Name
       value: graveBorder (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 3aacdd3e4736b1046bbdb9b4ed116625, type: 3}
+      propertyPath: m_Layer
+      value: 13
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3aacdd3e4736b1046bbdb9b4ed116625, type: 3}
@@ -2111,6 +2058,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: graveBorder (5)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 3aacdd3e4736b1046bbdb9b4ed116625, type: 3}
+      propertyPath: m_Layer
+      value: 13
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3aacdd3e4736b1046bbdb9b4ed116625, type: 3}
 --- !u!4 &8061858679292849931 stripped
@@ -2184,6 +2135,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 4fc82fc849f560c4b9a759e98cb94a7d, type: 3}
       propertyPath: m_Name
       value: tree_cone (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 4fc82fc849f560c4b9a759e98cb94a7d, type: 3}
+      propertyPath: m_Layer
+      value: 13
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4fc82fc849f560c4b9a759e98cb94a7d, type: 3}
@@ -2259,6 +2214,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: gravestoneRound (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 5a25e608fd4d6a74c946cbdfee0bc00c, type: 3}
+      propertyPath: m_Layer
+      value: 13
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5a25e608fd4d6a74c946cbdfee0bc00c, type: 3}
 --- !u!4 &8061858679211500163 stripped
@@ -2332,6 +2291,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 684d88c5adfce544b912a8b37b89f1c7, type: 3}
       propertyPath: m_Name
       value: stoneWallDamaged
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 684d88c5adfce544b912a8b37b89f1c7, type: 3}
+      propertyPath: m_Layer
+      value: 13
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 684d88c5adfce544b912a8b37b89f1c7, type: 3}
@@ -2407,6 +2370,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: pineCrooked
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 21ae1a3c8da1ed8438d1c61d94a15776, type: 3}
+      propertyPath: m_Layer
+      value: 13
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 21ae1a3c8da1ed8438d1c61d94a15776, type: 3}
 --- !u!4 &8061858679152625785 stripped
@@ -2480,6 +2447,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 3aacdd3e4736b1046bbdb9b4ed116625, type: 3}
       propertyPath: m_Name
       value: graveBorder
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 3aacdd3e4736b1046bbdb9b4ed116625, type: 3}
+      propertyPath: m_Layer
+      value: 13
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3aacdd3e4736b1046bbdb9b4ed116625, type: 3}
@@ -2555,6 +2526,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: ironFenceBorderCurve
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 6fa6e82ae796a2947aed3baa33542061, type: 3}
+      propertyPath: m_Layer
+      value: 13
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6fa6e82ae796a2947aed3baa33542061, type: 3}
 --- !u!4 &8061858679125139751 stripped
@@ -2625,9 +2600,21 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -5966263857221649367, guid: e39825f75450bcb42a20711a13848974, type: 3}
+      propertyPath: m_Layer
+      value: 13
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: e39825f75450bcb42a20711a13848974, type: 3}
       propertyPath: m_Name
       value: fenceDamaged (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: e39825f75450bcb42a20711a13848974, type: 3}
+      propertyPath: m_Layer
+      value: 13
+      objectReference: {fileID: 0}
+    - target: {fileID: 8655916560179723109, guid: e39825f75450bcb42a20711a13848974, type: 3}
+      propertyPath: m_Layer
+      value: 13
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e39825f75450bcb42a20711a13848974, type: 3}
@@ -2703,6 +2690,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: pineCrooked (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 21ae1a3c8da1ed8438d1c61d94a15776, type: 3}
+      propertyPath: m_Layer
+      value: 13
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 21ae1a3c8da1ed8438d1c61d94a15776, type: 3}
 --- !u!4 &8061858679050765779 stripped
@@ -2776,6 +2767,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 9939e1441bb1f2046ab881d755ff07d1, type: 3}
       propertyPath: m_Name
       value: ironFenceBorder (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 9939e1441bb1f2046ab881d755ff07d1, type: 3}
+      propertyPath: m_Layer
+      value: 13
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9939e1441bb1f2046ab881d755ff07d1, type: 3}
@@ -2851,6 +2846,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: stoneWall (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: f70360a3ee50ea741a106152e2cf80b7, type: 3}
+      propertyPath: m_Layer
+      value: 13
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f70360a3ee50ea741a106152e2cf80b7, type: 3}
 --- !u!4 &8061858679030952296 stripped
@@ -2921,9 +2920,21 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -5966263857221649367, guid: 8107d8c3e73a5b04d9ea3a92cd42a935, type: 3}
+      propertyPath: m_Layer
+      value: 13
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 8107d8c3e73a5b04d9ea3a92cd42a935, type: 3}
       propertyPath: m_Name
       value: fence (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 8107d8c3e73a5b04d9ea3a92cd42a935, type: 3}
+      propertyPath: m_Layer
+      value: 13
+      objectReference: {fileID: 0}
+    - target: {fileID: 8655916560179723109, guid: 8107d8c3e73a5b04d9ea3a92cd42a935, type: 3}
+      propertyPath: m_Layer
+      value: 13
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8107d8c3e73a5b04d9ea3a92cd42a935, type: 3}
@@ -2999,6 +3010,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: ironFenceBorderCurve (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 6fa6e82ae796a2947aed3baa33542061, type: 3}
+      propertyPath: m_Layer
+      value: 13
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6fa6e82ae796a2947aed3baa33542061, type: 3}
 --- !u!4 &8061858678981736380 stripped
@@ -3072,6 +3087,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 8f45533810aa3cc429f3844854e32ad8, type: 3}
       propertyPath: m_Name
       value: gravestoneBevel
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 8f45533810aa3cc429f3844854e32ad8, type: 3}
+      propertyPath: m_Layer
+      value: 13
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8f45533810aa3cc429f3844854e32ad8, type: 3}
@@ -3147,6 +3166,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: stoneWallCurve
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 001dbb8a9157c45428064b464923a4b3, type: 3}
+      propertyPath: m_Layer
+      value: 13
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 001dbb8a9157c45428064b464923a4b3, type: 3}
 --- !u!4 &8061858678945311898 stripped
@@ -3220,6 +3243,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 8e97d0171ee7a704f9d05dace48dd0b6, type: 3}
       propertyPath: m_Name
       value: gravestoneBroken
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 8e97d0171ee7a704f9d05dace48dd0b6, type: 3}
+      propertyPath: m_Layer
+      value: 13
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8e97d0171ee7a704f9d05dace48dd0b6, type: 3}
@@ -3295,6 +3322,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: borderPillar
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: f7a922c14916da646bb10a23d7c59ab1, type: 3}
+      propertyPath: m_Layer
+      value: 13
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f7a922c14916da646bb10a23d7c59ab1, type: 3}
 --- !u!4 &8061858678871691112 stripped
@@ -3368,6 +3399,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: c09adebfe76f10e43bfc2c700beff4ec, type: 3}
       propertyPath: m_Name
       value: pillarLarge (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: c09adebfe76f10e43bfc2c700beff4ec, type: 3}
+      propertyPath: m_Layer
+      value: 13
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c09adebfe76f10e43bfc2c700beff4ec, type: 3}
@@ -3443,6 +3478,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: pineCrooked (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 21ae1a3c8da1ed8438d1c61d94a15776, type: 3}
+      propertyPath: m_Layer
+      value: 13
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 21ae1a3c8da1ed8438d1c61d94a15776, type: 3}
 --- !u!4 &8061858678581688233 stripped
@@ -3513,9 +3552,21 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -5966263857221649367, guid: 8107d8c3e73a5b04d9ea3a92cd42a935, type: 3}
+      propertyPath: m_Layer
+      value: 13
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 8107d8c3e73a5b04d9ea3a92cd42a935, type: 3}
       propertyPath: m_Name
       value: fence (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 8107d8c3e73a5b04d9ea3a92cd42a935, type: 3}
+      propertyPath: m_Layer
+      value: 13
+      objectReference: {fileID: 0}
+    - target: {fileID: 8655916560179723109, guid: 8107d8c3e73a5b04d9ea3a92cd42a935, type: 3}
+      propertyPath: m_Layer
+      value: 13
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8107d8c3e73a5b04d9ea3a92cd42a935, type: 3}
@@ -3591,6 +3642,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: gravestoneRound
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 5a25e608fd4d6a74c946cbdfee0bc00c, type: 3}
+      propertyPath: m_Layer
+      value: 13
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5a25e608fd4d6a74c946cbdfee0bc00c, type: 3}
 --- !u!4 &8061858678526881614 stripped
@@ -3664,6 +3719,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 3498a7ee60d63604a9118d2f36854944, type: 3}
       propertyPath: m_Name
       value: debrisWood
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 3498a7ee60d63604a9118d2f36854944, type: 3}
+      propertyPath: m_Layer
+      value: 13
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3498a7ee60d63604a9118d2f36854944, type: 3}
@@ -3739,6 +3798,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: pillarLarge
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: c09adebfe76f10e43bfc2c700beff4ec, type: 3}
+      propertyPath: m_Layer
+      value: 13
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c09adebfe76f10e43bfc2c700beff4ec, type: 3}
 --- !u!4 &8061858678487206455 stripped
@@ -3812,6 +3875,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 9939e1441bb1f2046ab881d755ff07d1, type: 3}
       propertyPath: m_Name
       value: ironFenceBorder (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 9939e1441bb1f2046ab881d755ff07d1, type: 3}
+      propertyPath: m_Layer
+      value: 13
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9939e1441bb1f2046ab881d755ff07d1, type: 3}
@@ -3887,6 +3954,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: tree_default_dark (5)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 2ccbbb34c93ac414d9edc6d0de235a64, type: 3}
+      propertyPath: m_Layer
+      value: 13
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2ccbbb34c93ac414d9edc6d0de235a64, type: 3}
 --- !u!4 &8061858678500974290 stripped
@@ -3961,6 +4032,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: gravestoneBevel (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 8f45533810aa3cc429f3844854e32ad8, type: 3}
+      propertyPath: m_Layer
+      value: 13
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8f45533810aa3cc429f3844854e32ad8, type: 3}
 --- !u!4 &8061858678474700831 stripped
@@ -4031,9 +4106,21 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -5966263857221649367, guid: 8107d8c3e73a5b04d9ea3a92cd42a935, type: 3}
+      propertyPath: m_Layer
+      value: 13
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 8107d8c3e73a5b04d9ea3a92cd42a935, type: 3}
       propertyPath: m_Name
       value: fence (4)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 8107d8c3e73a5b04d9ea3a92cd42a935, type: 3}
+      propertyPath: m_Layer
+      value: 13
+      objectReference: {fileID: 0}
+    - target: {fileID: 8655916560179723109, guid: 8107d8c3e73a5b04d9ea3a92cd42a935, type: 3}
+      propertyPath: m_Layer
+      value: 13
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8107d8c3e73a5b04d9ea3a92cd42a935, type: 3}
@@ -4109,16 +4196,20 @@ PrefabInstance:
       propertyPath: m_Name
       value: pillarLarge (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: c09adebfe76f10e43bfc2c700beff4ec, type: 3}
+      propertyPath: m_Layer
+      value: 13
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c09adebfe76f10e43bfc2c700beff4ec, type: 3}
---- !u!4 &8061858678409012182 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: c09adebfe76f10e43bfc2c700beff4ec, type: 3}
-  m_PrefabInstance: {fileID: 7524319517703750717}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &7253796438558669164 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: c09adebfe76f10e43bfc2c700beff4ec, type: 3}
+  m_PrefabInstance: {fileID: 7524319517703750717}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &8061858678409012182 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: c09adebfe76f10e43bfc2c700beff4ec, type: 3}
   m_PrefabInstance: {fileID: 7524319517703750717}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &7524319517708116972
@@ -4187,6 +4278,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 43a28a91447918b4ea5174833bc3cabc, type: 3}
       propertyPath: m_Name
       value: ironFenceBorderGate
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 43a28a91447918b4ea5174833bc3cabc, type: 3}
+      propertyPath: m_Layer
+      value: 13
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 43a28a91447918b4ea5174833bc3cabc, type: 3}
@@ -4258,9 +4353,21 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -5966263857221649367, guid: 8107d8c3e73a5b04d9ea3a92cd42a935, type: 3}
+      propertyPath: m_Layer
+      value: 13
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 8107d8c3e73a5b04d9ea3a92cd42a935, type: 3}
       propertyPath: m_Name
       value: fence (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 8107d8c3e73a5b04d9ea3a92cd42a935, type: 3}
+      propertyPath: m_Layer
+      value: 13
+      objectReference: {fileID: 0}
+    - target: {fileID: 8655916560179723109, guid: 8107d8c3e73a5b04d9ea3a92cd42a935, type: 3}
+      propertyPath: m_Layer
+      value: 13
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8107d8c3e73a5b04d9ea3a92cd42a935, type: 3}
@@ -4336,6 +4443,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: trunk
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: afec2f5d8c3b7084ba5d8a77892a031d, type: 3}
+      propertyPath: m_Layer
+      value: 13
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: afec2f5d8c3b7084ba5d8a77892a031d, type: 3}
 --- !u!4 &8061858678284343642 stripped
@@ -4409,6 +4520,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 36ccb9406de7c414b86df5a64c41c70a, type: 3}
       propertyPath: m_Name
       value: shovelDirt (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 36ccb9406de7c414b86df5a64c41c70a, type: 3}
+      propertyPath: m_Layer
+      value: 13
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 36ccb9406de7c414b86df5a64c41c70a, type: 3}
@@ -4484,6 +4599,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: grave (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: d23a91ada32330c4a98dbc230530f801, type: 3}
+      propertyPath: m_Layer
+      value: 13
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d23a91ada32330c4a98dbc230530f801, type: 3}
 --- !u!4 &8061858678258046512 stripped
@@ -4557,6 +4676,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: d23a91ada32330c4a98dbc230530f801, type: 3}
       propertyPath: m_Name
       value: grave (7)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: d23a91ada32330c4a98dbc230530f801, type: 3}
+      propertyPath: m_Layer
+      value: 13
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d23a91ada32330c4a98dbc230530f801, type: 3}
@@ -4632,6 +4755,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: graveBorder (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 3aacdd3e4736b1046bbdb9b4ed116625, type: 3}
+      propertyPath: m_Layer
+      value: 13
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3aacdd3e4736b1046bbdb9b4ed116625, type: 3}
 --- !u!4 &8061858678178312084 stripped
@@ -4705,6 +4832,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: f70360a3ee50ea741a106152e2cf80b7, type: 3}
       propertyPath: m_Name
       value: stoneWall (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: f70360a3ee50ea741a106152e2cf80b7, type: 3}
+      propertyPath: m_Layer
+      value: 13
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f70360a3ee50ea741a106152e2cf80b7, type: 3}
@@ -4780,6 +4911,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: gravestoneBevel (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 8f45533810aa3cc429f3844854e32ad8, type: 3}
+      propertyPath: m_Layer
+      value: 13
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8f45533810aa3cc429f3844854e32ad8, type: 3}
 --- !u!4 &8061858678207293911 stripped
@@ -4850,9 +4985,21 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -5966263857221649367, guid: 8107d8c3e73a5b04d9ea3a92cd42a935, type: 3}
+      propertyPath: m_Layer
+      value: 13
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 8107d8c3e73a5b04d9ea3a92cd42a935, type: 3}
       propertyPath: m_Name
       value: fence (5)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 8107d8c3e73a5b04d9ea3a92cd42a935, type: 3}
+      propertyPath: m_Layer
+      value: 13
+      objectReference: {fileID: 0}
+    - target: {fileID: 8655916560179723109, guid: 8107d8c3e73a5b04d9ea3a92cd42a935, type: 3}
+      propertyPath: m_Layer
+      value: 13
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8107d8c3e73a5b04d9ea3a92cd42a935, type: 3}
@@ -4933,6 +5080,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: grave (6)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: d23a91ada32330c4a98dbc230530f801, type: 3}
+      propertyPath: m_Layer
+      value: 13
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d23a91ada32330c4a98dbc230530f801, type: 3}
 --- !u!4 &8061858678157727327 stripped
@@ -5006,6 +5157,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: f70360a3ee50ea741a106152e2cf80b7, type: 3}
       propertyPath: m_Name
       value: stoneWall (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: f70360a3ee50ea741a106152e2cf80b7, type: 3}
+      propertyPath: m_Layer
+      value: 13
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f70360a3ee50ea741a106152e2cf80b7, type: 3}
@@ -5081,6 +5236,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: debrisWood (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 3498a7ee60d63604a9118d2f36854944, type: 3}
+      propertyPath: m_Layer
+      value: 13
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3498a7ee60d63604a9118d2f36854944, type: 3}
 --- !u!4 &8061858678120099282 stripped
@@ -5155,6 +5314,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: gravestoneRound (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 5a25e608fd4d6a74c946cbdfee0bc00c, type: 3}
+      propertyPath: m_Layer
+      value: 13
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5a25e608fd4d6a74c946cbdfee0bc00c, type: 3}
 --- !u!4 &8061858678125906872 stripped
@@ -5225,9 +5388,21 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -5966263857221649367, guid: 8107d8c3e73a5b04d9ea3a92cd42a935, type: 3}
+      propertyPath: m_Layer
+      value: 13
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 8107d8c3e73a5b04d9ea3a92cd42a935, type: 3}
       propertyPath: m_Name
       value: fence (9)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 8107d8c3e73a5b04d9ea3a92cd42a935, type: 3}
+      propertyPath: m_Layer
+      value: 13
+      objectReference: {fileID: 0}
+    - target: {fileID: 8655916560179723109, guid: 8107d8c3e73a5b04d9ea3a92cd42a935, type: 3}
+      propertyPath: m_Layer
+      value: 13
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8107d8c3e73a5b04d9ea3a92cd42a935, type: 3}
@@ -5303,6 +5478,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: grave (10)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: d23a91ada32330c4a98dbc230530f801, type: 3}
+      propertyPath: m_Layer
+      value: 13
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d23a91ada32330c4a98dbc230530f801, type: 3}
 --- !u!4 &8061858678097515967 stripped
@@ -5377,6 +5556,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: grave (5)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: d23a91ada32330c4a98dbc230530f801, type: 3}
+      propertyPath: m_Layer
+      value: 13
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d23a91ada32330c4a98dbc230530f801, type: 3}
 --- !u!4 &8061858678041816157 stripped
@@ -5447,9 +5630,21 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -5966263857221649367, guid: 8107d8c3e73a5b04d9ea3a92cd42a935, type: 3}
+      propertyPath: m_Layer
+      value: 13
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 8107d8c3e73a5b04d9ea3a92cd42a935, type: 3}
       propertyPath: m_Name
       value: fence (7)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 8107d8c3e73a5b04d9ea3a92cd42a935, type: 3}
+      propertyPath: m_Layer
+      value: 13
+      objectReference: {fileID: 0}
+    - target: {fileID: 8655916560179723109, guid: 8107d8c3e73a5b04d9ea3a92cd42a935, type: 3}
+      propertyPath: m_Layer
+      value: 13
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8107d8c3e73a5b04d9ea3a92cd42a935, type: 3}
@@ -5521,9 +5716,21 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -5966263857221649367, guid: 8107d8c3e73a5b04d9ea3a92cd42a935, type: 3}
+      propertyPath: m_Layer
+      value: 13
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 8107d8c3e73a5b04d9ea3a92cd42a935, type: 3}
       propertyPath: m_Name
       value: fence (8)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 8107d8c3e73a5b04d9ea3a92cd42a935, type: 3}
+      propertyPath: m_Layer
+      value: 13
+      objectReference: {fileID: 0}
+    - target: {fileID: 8655916560179723109, guid: 8107d8c3e73a5b04d9ea3a92cd42a935, type: 3}
+      propertyPath: m_Layer
+      value: 13
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8107d8c3e73a5b04d9ea3a92cd42a935, type: 3}
@@ -5599,6 +5806,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: tree_default_dark (6)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 2ccbbb34c93ac414d9edc6d0de235a64, type: 3}
+      propertyPath: m_Layer
+      value: 13
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2ccbbb34c93ac414d9edc6d0de235a64, type: 3}
 --- !u!4 &8061858677939805429 stripped
@@ -5672,6 +5883,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 8f45533810aa3cc429f3844854e32ad8, type: 3}
       propertyPath: m_Name
       value: gravestoneBevel (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 8f45533810aa3cc429f3844854e32ad8, type: 3}
+      propertyPath: m_Layer
+      value: 13
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8f45533810aa3cc429f3844854e32ad8, type: 3}
@@ -5747,6 +5962,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: pillarLarge (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: c09adebfe76f10e43bfc2c700beff4ec, type: 3}
+      propertyPath: m_Layer
+      value: 13
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c09adebfe76f10e43bfc2c700beff4ec, type: 3}
 --- !u!4 &8061858677916920958 stripped
@@ -5820,6 +6039,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 3aacdd3e4736b1046bbdb9b4ed116625, type: 3}
       propertyPath: m_Name
       value: graveBorder (6)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 3aacdd3e4736b1046bbdb9b4ed116625, type: 3}
+      propertyPath: m_Layer
+      value: 13
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3aacdd3e4736b1046bbdb9b4ed116625, type: 3}
@@ -5895,6 +6118,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: gravestoneBroken (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 8e97d0171ee7a704f9d05dace48dd0b6, type: 3}
+      propertyPath: m_Layer
+      value: 13
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8e97d0171ee7a704f9d05dace48dd0b6, type: 3}
 --- !u!4 &8061858677932903327 stripped
@@ -5968,6 +6195,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 9939e1441bb1f2046ab881d755ff07d1, type: 3}
       propertyPath: m_Name
       value: ironFenceBorder (5)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 9939e1441bb1f2046ab881d755ff07d1, type: 3}
+      propertyPath: m_Layer
+      value: 13
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9939e1441bb1f2046ab881d755ff07d1, type: 3}
@@ -6043,6 +6274,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: ironFenceBorder (4)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 9939e1441bb1f2046ab881d755ff07d1, type: 3}
+      propertyPath: m_Layer
+      value: 13
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9939e1441bb1f2046ab881d755ff07d1, type: 3}
 --- !u!4 &8061858677890247216 stripped
@@ -6117,6 +6352,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: grave (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: d23a91ada32330c4a98dbc230530f801, type: 3}
+      propertyPath: m_Layer
+      value: 13
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d23a91ada32330c4a98dbc230530f801, type: 3}
 --- !u!4 &8061858677859286348 stripped
@@ -6190,6 +6429,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: b4a4e2181fff2ff4e966662d89a1c9be, type: 3}
       propertyPath: m_Name
       value: trunkLong
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: b4a4e2181fff2ff4e966662d89a1c9be, type: 3}
+      propertyPath: m_Layer
+      value: 13
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b4a4e2181fff2ff4e966662d89a1c9be, type: 3}
