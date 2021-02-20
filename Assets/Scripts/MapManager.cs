@@ -22,6 +22,8 @@ public class MapManager : MonoBehaviour {
     
     private List<Chunk> listeChunks;
 
+    public GameObject ChunkHolder;
+
     void Start() {
         GameObject chCache;
         int curDif;
@@ -30,9 +32,10 @@ public class MapManager : MonoBehaviour {
         int chunk3 = Random.Range(2, 6);
         int chunk2 = Random.Range(5, 11);
         int chunk1 = 29 - chunk3 - chunk2;
-        // Debug.Log(chunk1.ToString() + " " + chunk2.ToString() + " " + chunk3.ToString());
+        //Debug.Log(chunk1.ToString() + " " + chunk2.ToString() + " " + chunk3.ToString());
         listeChunks = new List<Chunk>();
         for(int i = 0; i < 35; i++) {
+            Debug.Log("oskour");
             listeChunks.Add(new Chunk(i%7, i/7));
             if (i == 17) {
                 // Spawn
@@ -76,8 +79,10 @@ public class MapManager : MonoBehaviour {
                 }
             }
             GameObject lastObject = Instantiate(chCache, new Vector3(listeChunks[i].GetX()*tailleChunks, 0, listeChunks[i].GetY()*tailleChunks), Quaternion.identity);
+
+            lastObject.transform.SetParent(ChunkHolder.transform);
             lastObject.GetComponent<SpawnManager>().SetDifficulty(curDif);
-            // Debug.Log(listeChunks[i]);
+            //Debug.Log(listeChunks[i]);
         }
     }
 

@@ -14,6 +14,7 @@ public class Chunk {
     private int difficulty;
     // spawn - castle - firecamp - base
     private string type;
+    
 
     public Chunk(int _positionX, int _positionY) {
         /**
