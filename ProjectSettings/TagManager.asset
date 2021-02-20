@@ -9,6 +9,8 @@ TagManager:
   - Protected
   - Unprotected
   - MarkSpawn
+  - Followers
+  - Enemies
   layers:
   - Default
   - TransparentFX

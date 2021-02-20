@@ -71,9 +71,11 @@ public class PlayerController : MonoBehaviour
         motor.Move(velocity);
 
         lastFrameVelocity = velocity;
-
-        Quaternion rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(velocity, Vector3.up), rotationSpeed * Time.deltaTime);
-        motor.Rotate(rotation);
+        if (velocity != Vector3.zero)
+        {
+            Quaternion rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(velocity, Vector3.up), rotationSpeed * Time.deltaTime);
+            motor.Rotate(rotation);
+        }
 
     }
 }

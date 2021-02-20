@@ -144,7 +144,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 14
   m_CollisionDetection: 0
 --- !u!114 &543185696597305356
 MonoBehaviour:
@@ -160,6 +160,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   followerScript: {fileID: 998481846054600082}
   animator: {fileID: 413623248192990510}
+  waitDurationAfterAttack: 0.5
 --- !u!114 &998481846054600082
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -194,7 +195,7 @@ MonoBehaviour:
   enemyMask:
     serializedVersion: 2
     m_Bits: 2048
-  SimpleFollowerPrefab: {fileID: 6790433691788385515, guid: 7a196356d61fd7c43868c0664ab159d4, type: 3}
+  SimpleFollowerPrefab: {fileID: 6790433691788385515, guid: 5642f8d572eb4d94ba3f3ff9f63ea9d7, type: 3}
 --- !u!1001 &6113611819042099391
 PrefabInstance:
   m_ObjectHideFlags: 0

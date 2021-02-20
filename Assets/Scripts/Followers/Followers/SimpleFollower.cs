@@ -4,8 +4,9 @@ using UnityEngine;
 
 public class SimpleFollower : Follower
 {
-    public bool CanBeUpgraded()
-    {
-        return followState == FollowState.Following;
-    }
+
+    public bool CanBeUpgraded() => followState == FollowState.Following;
+
+    public bool CanBeAttracted() => followState == FollowState.Following;
+
 }

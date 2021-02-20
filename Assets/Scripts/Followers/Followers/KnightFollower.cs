@@ -46,18 +46,27 @@ public class KnightFollower : Follower
     public delegate void EnemyInRangeDelegate(Enemy enemy);
     public EnemyInRangeDelegate OnEnemyInRange;
     public EnemyInRangeDelegate OnEnemyOutOfRange;
-    
+
+    List<Enemy> enemiesInRange;
+
     protected override void Start()
     {
         base.Start();
         fighterBehavior = (FighterBehavior)followBehavior;
         knightAttackTrigger = GetComponentInChildren<KnightAttackTrigger>();
-
+        enemiesInRange = new List<Enemy>();
         //Delegates
         OnEnemyInRange += SetTarget;
         OnEnemyOutOfRange += UnsetEnemyTarget;
-        knightAttackTrigger.EnemyAttackable += PerformAttack;
+        knightAttackTrigger.EnemyAttackable += AddEnemyInRange;
+        knightAttackTrigger.EnemyNotAttackable += RemoveEnemyInRange;
     }
+
+    public List<Enemy> GetEnemiesInRange() => enemiesInRange;
+
+    public void AddEnemyInRange(Enemy enemy) => enemiesInRange.Add(enemy);
+
+    public void RemoveEnemyInRange(Enemy enemy) => enemiesInRange.Remove(enemy);
 
     protected override void Update()
     {
@@ -70,18 +79,23 @@ public class KnightFollower : Follower
         //If the follower has a target and is following
         if (currentTarget != null && followState == FollowState.Following)
         {
-            //He is not at destination, if it is stopped, activate it and go to target
-            if (!followBehavior.IsNavMeshEnabled())
-                followBehavior.ToggleNavMesh(true);
+            ////He is not at destination, if it is stopped, activate it and go to target
+            //if (!followBehavior.IsNavMeshEnabled())
+            //    followBehavior.ToggleNavMesh(true);
+            if (followBehavior.IsNavMeshAgentEnabled())
+                followBehavior.GoToTarget(currentTarget);
+        }
 
-            followBehavior.GoToTarget(currentTarget);
+        if (enemiesInRange.Count > 0 && !fighterBehavior.IsAttacking)
+        {
+            PerformAttack(enemiesInRange[0]);
+            RemoveEnemyInRange(enemiesInRange[0]);
         }
     }
 
     public void PerformAttack(Enemy enemy)
     {
         fighterBehavior.Attack(enemy, attackDamages);
-        UpdateHealth(-1);
         SetTarget(FindObjectOfType<PlayerLead>().transform);
     }
 
