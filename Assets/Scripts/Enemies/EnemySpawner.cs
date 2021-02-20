@@ -54,7 +54,7 @@ public class EnemySpawner : MonoBehaviour
                 spawnTimer -= spawnPerSecond * currentSpawnRateMultiplier;
                 enemySpawnedList.Add(spawnedEnemy);
 
-                spawnedEnemy.OnDieEvent += RemoveEnemy;
+                Enemy.OnDieEvent += RemoveEnemy;
             }
         }
 
