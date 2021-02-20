@@ -2754,7 +2754,7 @@
     "m_Type": "UnityEditor.ShaderGraph.Vector4MaterialSlot",
     "m_ObjectId": "efe3a9e89e98f78481f7051d88a112d8",
     "m_Id": 0,
-    "m_DisplayName": "Tint",
+    "m_DisplayName": "Base Map",
     "m_SlotType": 1,
     "m_Hidden": false,
     "m_ShaderOutputName": "Out",
