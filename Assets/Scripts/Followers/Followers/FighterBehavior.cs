@@ -5,6 +5,17 @@ using UnityEngine;
 public class FighterBehavior : FollowerBehavior
 {
     float initialStoppingDist;
+    [SerializeField]
+    float waitDurationAfterAttack = 0.5f;
+
+    bool isAttacking;
+    public bool IsAttacking
+    {
+        get
+        {
+            return isAttacking;
+        }
+    }
 
     protected override void Start()
     {
@@ -18,10 +29,11 @@ public class FighterBehavior : FollowerBehavior
         //Play attack animation, destroy the enemy then
         if (animator != null)
         {
+            transform.LookAt(enemy.transform);
             animator.SetTrigger("Attack");
-            StartCoroutine(StopMoveForTime(animator.GetCurrentAnimatorStateInfo(0).length));
+            isAttacking = true;
+            StartCoroutine(StopMoveAfterAttack(enemy, damages, animator.GetCurrentAnimatorStateInfo(0).length));
         }
-        enemy.UpdateHealth(-damages);
     }
 
     public void SetNewStoppingDist(float newStoppingDist)
@@ -31,10 +43,14 @@ public class FighterBehavior : FollowerBehavior
 
     public void ResetStoppingDistance() => SetNewStoppingDist(initialStoppingDist);
 
-    public IEnumerator StopMoveForTime(float duration)
+    public IEnumerator StopMoveAfterAttack(Enemy enemy, int damages, float animDuration)
     {
         ToggleNavMesh(false);
-        yield return new WaitForSeconds(duration);
+        yield return new WaitForSeconds(animDuration / 2f);
+        enemy.UpdateHealth(-damages);
+        yield return new WaitForSeconds(animDuration / 2f + waitDurationAfterAttack);
         ToggleNavMesh(true);
+        isAttacking = false;
+        followerScript.UpdateHealth(-1);
     }
 }
