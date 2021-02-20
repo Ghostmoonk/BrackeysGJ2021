@@ -4,10 +4,12 @@ using UnityEngine;
 
 public class EndGame : MonoBehaviour {
     void Start() {
-        
+        if (!PlayerPrefs.HasKey("bestScore")) {
+            PlayerPrefs.SetInt("bestScore", 0);
+        }
     }
 
-    void Update() {
-        
-    }
+    // public void EndGame() {
+
+    // }
 }
