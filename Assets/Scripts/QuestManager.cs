@@ -67,7 +67,6 @@ public class QuestManager : MonoBehaviour {
         **/
         conditionClear = false;
         questCleared += 1;
-        Debug.Log("QuestClear");
         Instantiate(rewards[Random.Range(0, rewards.Count)], 
             spawnReward.position + (spawnReward.forward * 4),
             Quaternion.identity);
@@ -105,8 +104,6 @@ public class QuestManager : MonoBehaviour {
         /**
          * Fonction appelée quand une condition de quête est remplie
         **/
-        Debug.Log(_numQuest);
-        Debug.Log(randNumQuest);
         if (randNumQuest == _numQuest) {
             conditionIntClear -= 1;
             UI.SetQuestCondition(randNumQuest, conditionIntClear, conditionInt);
@@ -117,7 +114,6 @@ public class QuestManager : MonoBehaviour {
         AddToQuestCondition(0);
     }
     public void killedEnemy(Enemy enemy) {
-        Debug.Log(enemy);
         AddToQuestCondition(1);
     }
 

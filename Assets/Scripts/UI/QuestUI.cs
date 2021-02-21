@@ -31,7 +31,6 @@ public class QuestUI : MonoBehaviour
     }
     public void SetQuestCondition(int questID, int current, int total) {
         text.color = ColorQuest;
-        Debug.Log(System.String.Format(questLabel[questID], total - current, total));
         text.text = System.String.Format(questLabel[questID], total - current, total);
     }
 }

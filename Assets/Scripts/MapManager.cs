@@ -35,7 +35,6 @@ public class MapManager : MonoBehaviour {
         //Debug.Log(chunk1.ToString() + " " + chunk2.ToString() + " " + chunk3.ToString());
         listeChunks = new List<Chunk>();
         for(int i = 0; i < 35; i++) {
-            Debug.Log("oskour");
             listeChunks.Add(new Chunk(i%7, i/7));
             if (i == 17) {
                 // Spawn

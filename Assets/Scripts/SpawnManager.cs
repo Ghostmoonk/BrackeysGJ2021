@@ -31,7 +31,6 @@ public class SpawnManager : MonoBehaviour {
                 listeSpawns.Add(child);
             }
         }
-        Debug.Log(listeSpawns.Count);
         if (mapType == MapType.Spawn) {
             SpawnVillager(4, 8);
         } else if (mapType == MapType.Firecamp) {
