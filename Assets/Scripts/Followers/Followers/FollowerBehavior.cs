@@ -35,19 +35,15 @@ public class FollowerBehavior : MonoBehaviour
             if (followerScript.GetState() == FollowState.Attracted)
             {
                 transform.rotation = Quaternion.identity;
-                if (animator.GetBool("isDragged"))
-                {
-                    Debug.Log(animator.GetBool("isDragged"));
-                    animator.SetBool("isDragged", true);
-                }
-                
+                Debug.Log(animator.GetBool("isDragged"));
+                animator.SetBool("isDragged", true);
             }
             else
             {
                 animator.SetBool("isDragged", false);
             }
 
-            if(followerScript.GetState()== FollowState.Following)
+            if (followerScript.GetState() == FollowState.Following)
             {
                 animator.SetBool("isFollower", true);
 
@@ -83,7 +79,6 @@ public class FollowerBehavior : MonoBehaviour
     }
 
     public bool IsNavMeshAgentEnabled() => agent.enabled;
-
 
     public bool IsNavMeshEnabled() => agent.enabled;
 
