@@ -139,16 +139,17 @@ public class Enemy : MonoBehaviour, IHealth
 
     float attrackingTimer = 0f;
 
+    Vector3 moveVelocity = Vector3.zero;
     private void Update()
     {
         //If he is attracting or fleeing
         if (state == EnemyState.Attracting || state == EnemyState.Fleeing)
         {
-            Vector3 moveVelocity = Vector3.zero;
+            moveVelocity = Vector3.zero;
 
             if (state == EnemyState.Attracting)
             {
-                moveVelocity = fleeDirection.normalized * attractSpeed * Time.deltaTime;
+                moveVelocity = fleeDirection.normalized * attractSpeed * Time.fixedDeltaTime;
                 attrackingTimer += Time.deltaTime;
 
                 if (attrackingTimer >= attractTimeToKill)
@@ -159,11 +160,11 @@ public class Enemy : MonoBehaviour, IHealth
                 }
             }
             else
-                moveVelocity = fleeDirection.normalized * fleeSpeed * Time.deltaTime;
+                moveVelocity = fleeDirection.normalized * fleeSpeed * Time.fixedDeltaTime;
             enemyBehavior.StopDestination(true);
             //enemyBehavior.GoToTarget(fleeDirection.normalized * 2f);
             //enemyBehavior.Move(moveVelocity);
-            enemyBehavior.MoveVelocity(moveVelocity * 100f);
+            //enemyBehavior.MoveVelocity(moveVelocity * 100f);
             return;
         }
 
@@ -191,6 +192,16 @@ public class Enemy : MonoBehaviour, IHealth
         {
             state = EnemyState.Waiting;
             enemyBehavior.StopDestination(true);
+        }
+    }
+
+    private void FixedUpdate()
+    {
+        //If he is attracting or fleeing
+        if (state == EnemyState.Attracting || state == EnemyState.Fleeing)
+        {
+            enemyBehavior.MoveVelocity(moveVelocity * 25f);
+            return;
         }
     }
 
