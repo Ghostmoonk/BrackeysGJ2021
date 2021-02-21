@@ -16,6 +16,7 @@ TagManager:
   - CanvasEndGame
   - TextEndGame
   - RefillArea
+  - DefaultSource
   layers:
   - Default
   - TransparentFX

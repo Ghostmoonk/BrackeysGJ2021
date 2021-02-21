@@ -13,6 +13,9 @@ public class FollowerUpgrader : MonoBehaviour
         }
     }
 
+    [SerializeField]
+    AudioSource equipSoundSource;
+
     private void Awake()
     {
         if (instance != null)
@@ -28,6 +31,7 @@ public class FollowerUpgrader : MonoBehaviour
     [SerializeField]
     FollowerItem[] followersItem;
     Dictionary<ItemType, GameObject> followersItemDico;
+    Dictionary<ItemType, string> itemsSoundDico;
 
     PlayerLead playerLead;
 
@@ -35,10 +39,15 @@ public class FollowerUpgrader : MonoBehaviour
     {
         playerLead = FindObjectOfType<PlayerLead>();
         followersItemDico = new Dictionary<ItemType, GameObject>();
+        itemsSoundDico = new Dictionary<ItemType, string>();
+
         foreach (FollowerItem followerItem in followersItem)
         {
             followersItemDico.Add(followerItem.itemType, followerItem.followerPrefab);
+            itemsSoundDico.Add(followerItem.itemType, followerItem.equipSoundName);
         }
+
+
     }
 
     //Upgrade follower = remove the follower, add a new one depending on item type
@@ -54,6 +63,7 @@ public class FollowerUpgrader : MonoBehaviour
 
         newFollowerToInstantiate.SetTarget(follower.CurrentTarget);
 
+        SoundManager.Instance.PlaySound(equipSoundSource, itemsSoundDico[itemType]);
         playerLead.AppendFollower(newFollowerToInstantiate);
 
         playerLead.RemoveFollower(follower);
@@ -68,4 +78,6 @@ public struct FollowerItem
 {
     public GameObject followerPrefab;
     public ItemType itemType;
+    public string equipSoundName;
 }
+
