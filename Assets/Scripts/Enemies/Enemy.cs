@@ -91,6 +91,14 @@ public class Enemy : MonoBehaviour, IHealth
         }
     }
 
+    #region Sound
+    [Header("Sound")]
+    [SerializeField]
+    AudioSource idleSound;
+    [SerializeField]
+    string idleSoundName;
+    #endregion
+
     private void Start()
     {
         enemyBehavior = GetComponent<EnemyBehavior>();
@@ -101,6 +109,12 @@ public class Enemy : MonoBehaviour, IHealth
 
         PoofManager.Instance.InstantiatePoof(transform);
 
+        InvokeRepeating("PlayEnemyIdleSound", 0.001f, Random.Range(2f, 10f));
+    }
+
+    public void PlayEnemyIdleSound()
+    {
+        SoundManager.Instance.PlaySound(idleSound, idleSoundName);
     }
 
     public void ClearTarget()
@@ -112,7 +126,6 @@ public class Enemy : MonoBehaviour, IHealth
             state = EnemyState.Waiting;
         }
     }
-
 
     float attrackingTimer = 0f;
 
@@ -137,9 +150,10 @@ public class Enemy : MonoBehaviour, IHealth
             }
             else
                 moveVelocity = fleeDirection.normalized * fleeSpeed * Time.deltaTime;
-
+            enemyBehavior.StopDestination(true);
             //enemyBehavior.GoToTarget(fleeDirection.normalized * 2f);
-            enemyBehavior.Move(moveVelocity);
+            //enemyBehavior.Move(moveVelocity);
+            enemyBehavior.MoveVelocity(moveVelocity * 100f);
             return;
         }
 
@@ -189,7 +203,7 @@ public class Enemy : MonoBehaviour, IHealth
                 state = EnemyState.Attracting;
                 fleeDirection = new Vector3(
                     transform.position.x - FindObjectOfType<PlayerLead>().transform.position.x,
-                    transform.position.y,
+                    0f,
                     transform.position.z - FindObjectOfType<PlayerLead>().transform.position.z);
 
                 //enemyBehavior.GoToTarget(fleeDirection.normalized * Mathf.Infinity);
@@ -326,7 +340,7 @@ public class Enemy : MonoBehaviour, IHealth
 
                 if (hit.collider != null)
                 {
-                    //Debug.Log("Il y a une lumière !!");
+                    //Debug.Log("Il y a une lumière !! Je peux pas target");
                 }
                 //Find the closest one
                 else if (Vector3.Distance(follower.transform.position, transform.position) < closestDist)
@@ -361,7 +375,7 @@ public class Enemy : MonoBehaviour, IHealth
         //enemyBehavior.StopDestination(true);
         fleeDirection = fleeDirection = new Vector3(
                     transform.position.x - FindObjectOfType<PlayerLead>().transform.position.x,
-                    transform.position.y,
+                    0f,
                     transform.position.z - FindObjectOfType<PlayerLead>().transform.position.z);
 
         enemyBehavior.GoToTarget(fleeDirection.normalized * Mathf.Infinity);

@@ -10,8 +10,8 @@ public class PlayerLead : MonoBehaviour
     List<Follower> followers;
     public delegate void OnFollowerAdded(Follower f);
     public delegate void OnFollowerRemoved(Follower f);
-    public static event OnFollowerAdded FollowerAdded; 
-    public static event OnFollowerRemoved FollowerRemoved; 
+    public static event OnFollowerAdded FollowerAdded;
+    public static event OnFollowerRemoved FollowerRemoved;
     Inventory inventory;
 
     public GameObject smokePofGameObject;

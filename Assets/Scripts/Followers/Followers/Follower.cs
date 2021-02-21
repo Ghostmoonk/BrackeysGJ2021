@@ -17,6 +17,13 @@ public abstract class Follower : MonoBehaviour, IHealth
     protected FollowerBehavior followBehavior;
     #endregion
 
+    #region Sound
+    [SerializeField]
+    protected AudioSource joinSource;
+    [SerializeField]
+    protected string joinSourceName;
+    #endregion
+
     [SerializeField]
     protected int maxHealth;
     protected int currentHealth;
@@ -94,6 +101,9 @@ public abstract class Follower : MonoBehaviour, IHealth
     {
         currentTarget = _target;
         SetState(FollowState.Following);
+
+        if (_target.GetComponent<PlayerLead>() && joinSource != null)
+            SoundManager.Instance.PlaySound(joinSource, joinSourceName);
     }
 
     public void SetTargetable(bool _targetable)
