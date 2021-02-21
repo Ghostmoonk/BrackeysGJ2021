@@ -15,7 +15,7 @@ public class UIMenu : MonoBehaviour {
     }
     
     public void GoPlay() {
-        SceneManager.LoadScene("game");
+        SceneManager.LoadScene("Level 1");
     }
 
     public void ConfimationActive() {

@@ -94,9 +94,17 @@ PrefabInstance:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: -257278029260952120, guid: b7ce6454103ef8f4aaf099b5df39fbf3, type: 3}
+    - target: {fileID: 4440401165546323757, guid: af2044cb5a3dd3746a78c274f8ae7e64, type: 3}
+      propertyPath: m_Intensity
+      value: 1.93
+      objectReference: {fileID: 0}
     - target: {fileID: 5153435545705657746, guid: af2044cb5a3dd3746a78c274f8ae7e64, type: 3}
       propertyPath: m_Name
       value: SwordReward
+      objectReference: {fileID: 0}
+    - target: {fileID: 5474379456424151114, guid: af2044cb5a3dd3746a78c274f8ae7e64, type: 3}
+      propertyPath: m_RootOrder
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6432050950070970043, guid: af2044cb5a3dd3746a78c274f8ae7e64, type: 3}
       propertyPath: m_Materials.Array.size
@@ -105,18 +113,18 @@ PrefabInstance:
     - target: {fileID: 6432050950070970043, guid: af2044cb5a3dd3746a78c274f8ae7e64, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: ac571b563b7fc8846b25930760c5ae70, type: 2}
+      objectReference: {fileID: 2100000, guid: bd6e2d5f63296d74a85ac856d6ee4e20, type: 2}
     - target: {fileID: 6789615973822756462, guid: af2044cb5a3dd3746a78c274f8ae7e64, type: 3}
       propertyPath: m_LocalScale.x
-      value: 4.641222
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 6789615973822756462, guid: af2044cb5a3dd3746a78c274f8ae7e64, type: 3}
       propertyPath: m_LocalScale.y
-      value: 4.641222
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 6789615973822756462, guid: af2044cb5a3dd3746a78c274f8ae7e64, type: 3}
       propertyPath: m_LocalScale.z
-      value: 4.641222
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 6789615973822756462, guid: af2044cb5a3dd3746a78c274f8ae7e64, type: 3}
       propertyPath: m_LocalPosition.x

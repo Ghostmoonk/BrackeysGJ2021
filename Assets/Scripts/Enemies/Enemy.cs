@@ -400,8 +400,12 @@ public class Enemy : MonoBehaviour, IHealth
 
     public void KillTarget()
     {
-        currentFollowerTarget.Die();
-        currentFollowerTarget = null;
+        if(currentFollowerTarget != null)
+        {
+            currentFollowerTarget.Die();
+            currentFollowerTarget = null;
+        }
+       
     }
 
     public void UpdateHealth(int amount)

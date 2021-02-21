@@ -91,7 +91,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c5a3fd01fcf47004381c899c63d74593, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 4
+  speed: 4.5
   rotationSpeed: 30
   AccelCurve:
     serializedVersion: 2
@@ -153,7 +153,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f2f72bc82fa019841ab775bf72013d3f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  smokePof: {fileID: 0}
+  smokePofGameObject: {fileID: 0}
   followerMask:
     serializedVersion: 2
     m_Bits: 64
@@ -171,6 +171,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   inventoryUI: {fileID: 0}
+  followerCounterUI: {fileID: 0}
 --- !u!1001 &438796102985411795
 PrefabInstance:
   m_ObjectHideFlags: 0
