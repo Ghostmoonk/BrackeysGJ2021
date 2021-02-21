@@ -81,6 +81,14 @@ public class Enemy : MonoBehaviour, IHealth
         }
     }
 
+    bool canChase
+    {
+        get
+        {
+            return state != EnemyState.Fleeing && state != EnemyState.Attracting;
+        }
+    }
+
     bool isTargetable = false;
 
     public bool IsTargetable
@@ -96,6 +104,8 @@ public class Enemy : MonoBehaviour, IHealth
     [SerializeField]
     AudioSource idleSound;
     [SerializeField]
+    AudioSource spawnSound;
+    [SerializeField]
     string idleSoundName;
     #endregion
 
@@ -108,7 +118,7 @@ public class Enemy : MonoBehaviour, IHealth
         currentHealth = maxHealth;
 
         PoofManager.Instance.InstantiatePoof(transform);
-
+        SoundManager.Instance.PlaySound(spawnSound, "enemy-spawn");
         InvokeRepeating("PlayEnemyIdleSound", 0.001f, Random.Range(2f, 10f));
     }
 
@@ -172,7 +182,7 @@ public class Enemy : MonoBehaviour, IHealth
             currentFollowerTarget = FindClosestTargetableFollower();
         }
         //If he has a target, command the behavior search for
-        if (state == EnemyState.Chasing && currentFollowerTarget != null)
+        if (canChase && currentFollowerTarget != null)
         {
             enemyBehavior.GoToTarget(currentFollowerTarget.transform);
         }
@@ -378,7 +388,7 @@ public class Enemy : MonoBehaviour, IHealth
                     0f,
                     transform.position.z - FindObjectOfType<PlayerLead>().transform.position.z);
 
-        enemyBehavior.GoToTarget(fleeDirection.normalized * Mathf.Infinity);
+        //enemyBehavior.GoToTarget(fleeDirection.normalized * Mathf.Infinity);
         enemyBehavior.SetNewSpeed(fleeSpeed);
 
         yield return new WaitForSeconds(inlightFleeDuration);
@@ -399,27 +409,20 @@ public class Enemy : MonoBehaviour, IHealth
         currentFollowerTarget.transform.SetParent(GameObject.FindGameObjectWithTag("Followers").transform);
         currentFollowerTarget.SetState(FollowState.Waiting);
         currentFollowerTarget.transform.position = attractAttachPoint.position;
+
         //currentFollowerTarget.transform.position = new Vector3(attractAttachPoint.position.x, 3f, attractAttachPoint.position.z);
 
         attrackingTimer = 0f;
     }
 
-    //private void OnBecameInvisible()
-    //{
-    //    if (state == EnemyState.Attracting)
-    //    {
-    //        OnBecomeInvisible?.Invoke();
-    //    }
-    //}
-
     public void KillTarget()
     {
-        if(currentFollowerTarget != null)
+        if (currentFollowerTarget != null)
         {
             currentFollowerTarget.Die();
             currentFollowerTarget = null;
         }
-       
+
     }
 
     public void UpdateHealth(int amount)
@@ -440,7 +443,7 @@ public class Enemy : MonoBehaviour, IHealth
         {
             ReleaseCurrentAttractingTarget();
         }
-
+        SoundManager.Instance.PlaySound(spawnSound, "enemy-die");
         Destroy(gameObject);
     }
 

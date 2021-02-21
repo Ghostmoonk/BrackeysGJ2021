@@ -56,6 +56,8 @@ public class FollowerUpgrader : MonoBehaviour
         if (!FindObjectOfType<PlayerLead>().GetFollowers().Contains(follower))
             return;
 
+        SoundManager.Instance.PlaySound(equipSoundSource, itemsSoundDico[itemType]);
+
         Follower newFollowerToInstantiate = Instantiate(followersItemDico[itemType],
             follower.transform.position,
             follower.transform.rotation,
@@ -63,7 +65,6 @@ public class FollowerUpgrader : MonoBehaviour
 
         newFollowerToInstantiate.SetTarget(follower.CurrentTarget);
 
-        SoundManager.Instance.PlaySound(equipSoundSource, itemsSoundDico[itemType]);
         playerLead.AppendFollower(newFollowerToInstantiate);
 
         playerLead.RemoveFollower(follower);
