@@ -56,6 +56,7 @@ public class PlayerLead : MonoBehaviour
                 {
                     smokePofGameObject.transform.position = followerCollider.transform.position;
                     smokePof.Play();
+                    Debug.Log(follower);
                     AppendFollower(follower);
                     follower.SetTarget(transform);
                 }
@@ -116,7 +117,8 @@ public class PlayerLead : MonoBehaviour
         followers.Add(follower);
 
         //trigger event
-        FollowerAdded(follower);
+        FollowerAdded?.Invoke(follower);
+
     }
 
     public void RemoveFollower(Follower follower)
@@ -124,7 +126,7 @@ public class PlayerLead : MonoBehaviour
         followers.Remove(follower);
 
         //trigger event
-        FollowerRemoved(follower);
+        FollowerRemoved?.Invoke(follower);
     }
 
     #endregion

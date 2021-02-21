@@ -43,6 +43,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bae532931eea89444b877b11f24e9863, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  poofPrefab: {fileID: 0}
   poofsVFXAssets:
-  - {fileID: 8926484042661614526, guid: d2c8b3059bafbe1418828871344907b7, type: 3}
+  - VFXasset: {fileID: 8926484042661614526, guid: d2c8b3059bafbe1418828871344907b7, type: 3}
+    duration: 3
