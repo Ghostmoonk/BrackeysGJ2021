@@ -41,14 +41,7 @@ public class PlayerLead : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.F))
-        {
-            inventory.AddItem(ItemType.Sword);
-        }
-        if (Input.GetKeyDown(KeyCode.G))
-        {
-            inventory.AddItem(ItemType.Torch);
-        }
+        
         //If a waiting follower is in range, add him in the follower list
         Collider[] followerColliders = Physics.OverlapSphere(transform.position, appendFollowerRadius, followerMask);
         foreach (Collider followerCollider in followerColliders)
