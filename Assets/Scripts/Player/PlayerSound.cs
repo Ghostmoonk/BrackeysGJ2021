@@ -7,5 +7,9 @@ public class PlayerSound : MonoBehaviour
     [SerializeField]
     AudioSource footStepSource;
 
-    public void PlayFootstepSound(string footstepName) => SoundManager.Instance.PlaySound(footStepSource, footstepName);
+    public void PlayFootstepSound(string footstepName)
+    {
+        Debug.Log(footstepName);
+        SoundManager.Instance.PlaySound(footStepSource, footstepName);
+    }
 }

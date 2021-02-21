@@ -25,11 +25,7 @@ public class ChangementClasse : MonoBehaviour
     void Update()
     {
 
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            StartCoroutine(onSwitch(0.2f, "Chevalier"));
-            
-        }
+        
 
     }
 
