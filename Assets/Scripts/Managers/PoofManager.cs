@@ -34,7 +34,6 @@ public class PoofManager : MonoBehaviour
         GameObject obj = new GameObject("Poof");
         Poof poof = obj.AddComponent<Poof>();
         VFXAssetDuration randomVFX = poofsVFXAssets[Random.Range(0, poofsVFXAssets.Length - 1)];
-
         poof.SetVFX(randomVFX.VFXasset, randomVFX.duration);
         obj.transform.position = spawnTransform.position;
         obj.transform.rotation = spawnTransform.rotation;

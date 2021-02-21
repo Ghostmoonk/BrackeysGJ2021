@@ -49,6 +49,9 @@ public class KnightFollower : Follower
 
     List<Enemy> enemiesInRange;
 
+    [SerializeField]
+    AudioSource attackSource;
+
     protected override void Start()
     {
         base.Start();
@@ -85,7 +88,7 @@ public class KnightFollower : Follower
             if (followBehavior.IsNavMeshAgentEnabled())
                 followBehavior.GoToTarget(currentTarget);
         }
-
+        Debug.Log(enemiesInRange.Count);
         if (enemiesInRange.Count > 0 && !fighterBehavior.IsAttacking)
         {
             PerformAttack(enemiesInRange[0]);
@@ -97,6 +100,7 @@ public class KnightFollower : Follower
     {
         fighterBehavior.Attack(enemy, attackDamages);
         SetTarget(FindObjectOfType<PlayerLead>().transform);
+        SoundManager.Instance.PlaySound(attackSource, "knight-attack");
     }
 
     public void SetTarget(Enemy enemy)

@@ -61,6 +61,21 @@ MonoBehaviour:
   - name: torch-upgrade
     clips:
     - {fileID: 8300000, guid: 0b1fc36ea5ac1614ea22eef15d9c3a75, type: 3}
+  - name: enemy-spawn
+    clips:
+    - {fileID: 8300000, guid: e03063dd5c031cb46ad97271d0f66754, type: 3}
+    - {fileID: 8300000, guid: f70a73376ec679741aecf2447c0cb7d1, type: 3}
+    - {fileID: 8300000, guid: 64441b8bdff40b64487005f70afc89da, type: 3}
+  - name: enemy-die
+    clips:
+    - {fileID: 8300000, guid: 6b734c1d24f91a54a8ad55d1a5461a00, type: 3}
+    - {fileID: 8300000, guid: ecf80ab65fcca944ba597ca248fa0196, type: 3}
+    - {fileID: 8300000, guid: e3b70a7b6aa1853468711e32fd52444d, type: 3}
+  - name: knight-attack
+    clips:
+    - {fileID: 8300000, guid: af349ea7a8b33934498ca6b2af88e69f, type: 3}
+    - {fileID: 8300000, guid: b4cbd5a5d53b83e48b1e0a836b331ed7, type: 3}
+    - {fileID: 8300000, guid: 131958b6ddf0df54c821f27528d088f4, type: 3}
 --- !u!82 &4102572825301878315
 AudioSource:
   m_ObjectHideFlags: 0
