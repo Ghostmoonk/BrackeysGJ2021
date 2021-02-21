@@ -64,7 +64,7 @@ public class Enemy : MonoBehaviour, IHealth
     //UnityEvent OnBecomeInvisible;
 
     public delegate void OnDie(Enemy enemy);
-    public OnDie OnDieEvent;
+    public static event OnDie OnDieEvent;
 
     #endregion
 
@@ -414,8 +414,12 @@ public class Enemy : MonoBehaviour, IHealth
 
     public void KillTarget()
     {
-        currentFollowerTarget.Die();
-        currentFollowerTarget = null;
+        if(currentFollowerTarget != null)
+        {
+            currentFollowerTarget.Die();
+            currentFollowerTarget = null;
+        }
+       
     }
 
     public void UpdateHealth(int amount)
